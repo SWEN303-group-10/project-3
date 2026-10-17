@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>S1 My courses</title>
+<style>
+:root {
+  color-scheme: light dark;
+  --c-bg: #fafafa;
+  --c-surface: #ffffff;
+  --c-surface-2: #f5f5f5;
+  --c-well: #f4f4f4;
+  --c-line: #e8e8e8;
+  --c-line-2: #d4d4d4;
+  --c-ink: #171717;
+  --c-ink-2: #525252;
+  --c-ink-3: #6b6b6b;
+  --c-ink-4: #a3a3a3;
+  --c-on-ink: #ffffff;
+  --c-ink-hover: #333333;
+  --c-skeleton: #e4e4e4;
+  --c-page: #f2f2f2;
+  --c-control: #e9e9e9;
+  --c-control-hover: #dedede;
+  --c-shadow: 0 0 0;
+  --c-shadow-a: 0.12;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --c-bg: #0e0e0e;
+    --c-surface: #161616;
+    --c-surface-2: #212121;
+    --c-well: #1d1d1d;
+    --c-line: #2a2a2a;
+    --c-line-2: #3d3d3d;
+    --c-ink: #ededed;
+    --c-ink-2: #b0b0b0;
+    --c-ink-3: #a1a1a1;
+    --c-ink-4: #6e6e6e;
+    --c-on-ink: #111111;
+    --c-ink-hover: #cfcfcf;
+    --c-skeleton: #2c2c2c;
+    --c-page: #0e0e0e;
+    --c-control: #2e2e2e;
+    --c-control-hover: #383838;
+    --c-shadow-a: 0.5;
+  }
+}
+:root[data-theme='light'] { color-scheme: light; }
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --c-bg: #0e0e0e;
+  --c-surface: #161616;
+  --c-surface-2: #212121;
+  --c-well: #1d1d1d;
+  --c-line: #2a2a2a;
+  --c-line-2: #3d3d3d;
+  --c-ink: #ededed;
+  --c-ink-2: #b0b0b0;
+  --c-ink-3: #a1a1a1;
+  --c-ink-4: #6e6e6e;
+  --c-on-ink: #111111;
+  --c-ink-hover: #cfcfcf;
+  --c-skeleton: #2c2c2c;
+  --c-page: #0e0e0e;
+  --c-control: #2e2e2e;
+  --c-control-hover: #383838;
+  --c-shadow-a: 0.5;
+}
+
+:root {
+  --bg: var(--c-bg);
+  --panel: var(--c-surface);
+  --hover: var(--c-surface-2);
+  --subtle: var(--c-surface-2);
+  --well: var(--c-well);
+  --line: var(--c-line);
+  --line-strong: var(--c-line-2);
+  --text: var(--c-ink);
+  --neutral-text: var(--c-ink-2);
+  --muted: var(--c-ink-3);
+  --faint: var(--c-ink-4);
+  --on-accent: var(--c-on-ink);
+  --accent-hover: var(--c-ink-hover);
+  --skeleton: var(--c-skeleton);
+  --page: var(--c-page);
+  --control: var(--c-control);
+  --control-hover: var(--c-control-hover);
+  --focus: var(--c-ink);
+  --shadow: rgb(var(--c-shadow) / var(--c-shadow-a));
+}
+
+:root {
+  --sans: "SF Pro", "SF Pro Text", "SF Pro Display", -apple-system,
+          BlinkMacSystemFont, system-ui, 'Segoe UI', sans-serif;
+  --mono: "SF Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --fs-title: 22px;
+  --fs-heading: 17px;
+  --fs-body: 15px;
+  --fs-label: 13px;
+  --fs-micro: 11px;
+  --lh-tight: 1.15;
+  --lh-snug: 1.3;
+  --lh-body: 1.45;
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --tracking-tight: -0.02em;
+  --tracking-micro: 0.06em;
+  --s-1: 2px;  --s-2: 4px;  --s-3: 6px;  --s-4: 8px;  --s-5: 12px;
+  --s-6: 16px;  --s-8: 24px; --s-9: 32px; --s-10: 40px;
+  --gutter: var(--s-10);
+  --stack: var(--s-8);
+  --content-max: 1200px;
+  --bar-height: 52px;
+  --avatar-size: 36px;
+  --avatar-small-size: 28px;
+  --icon-size: 28px;
+  --field-height: 120px;
+  --form-max: 640px;
+  --last-active-width: 170px;
+  --r-control: 8px;
+  --r-card: 12px;
+  --r-pill: 999px;
+  --e-1: 0 1px 2px rgb(var(--c-shadow) / calc(var(--c-shadow-a) * 0.35));
+  --e-2: 0 2px 8px rgb(var(--c-shadow) / calc(var(--c-shadow-a) * 0.55));
+  --motion: 140ms cubic-bezier(0.2, 0, 0, 1);
+  --target: 32px;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  font: var(--fw-regular) var(--fs-body)/var(--lh-body) var(--sans);
+  color: var(--text); background: var(--page);
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, p, ul { margin: 0; }
+ul { padding: 0; list-style: none; }
+a { color: var(--text); text-decoration-color: var(--line-strong); text-underline-offset: var(--s-1); }
+:focus-visible { outline: var(--s-1) solid var(--focus); outline-offset: var(--s-1); border-radius: var(--s-2); }
+
+.bar {
+  display: flex; align-items: center; gap: var(--s-6);
+  height: var(--bar-height);
+
+  padding: 0 max(var(--gutter), calc((100% - var(--content-max)) / 2));
+  background: var(--panel);
+}
+.bar .home { font-weight: var(--fw-semibold); text-decoration: none; }
+.crumbs { display: flex; align-items: center; margin: 0; padding: 0; list-style: none; font-size: var(--fs-label); }
+.crumbs li + li::before { content: "/"; color: var(--faint); margin: 0 var(--s-4); }
+.crumbs a { color: var(--muted); text-decoration: none; transition: color var(--motion); }
+.crumbs a:hover { color: var(--text); text-decoration: underline; text-decoration-color: var(--line-strong); }
+.crumbs [aria-current="page"] { color: var(--text); font-weight: var(--fw-medium); }
+.page {
+  display: flex; flex-direction: column; gap: var(--stack);
+  max-width: calc(var(--content-max) + 2 * var(--gutter));
+  margin: 0 auto;
+  padding: var(--s-9) var(--gutter) var(--s-10);
+}
+.page-head { display: flex; align-items: flex-end; gap: var(--s-4); }
+.page-head .actions { margin-left: auto; display: flex; gap: var(--s-4); }
+h1 {
+  font-size: var(--fs-title); font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-tight); line-height: var(--lh-tight);
+}
+
+.eyebrow {
+  font-size: var(--fs-micro); font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-micro); text-transform: uppercase;
+  color: var(--muted);
+}
+.muted { color: var(--muted); font-size: var(--fs-label); line-height: var(--lh-snug); }
+
+.grid { display: grid; gap: var(--s-6); grid-template-columns: repeat(var(--cols, 3), minmax(0, 1fr)); align-items: start; }
+.grid.tight { gap: var(--s-4); }
+.row { display: flex; justify-content: space-between; align-items: center; gap: var(--s-5); }
+
+.summary { display: grid; grid-template-columns: 2fr 1fr; gap: var(--s-6); align-items: start; }
+.last-active { width: var(--last-active-width); }
+.flag { font-weight: var(--fw-semibold); color: var(--text); }
+
+.card {
+  background: var(--panel);
+  border-radius: var(--r-card);
+  padding: var(--s-5) var(--s-6);
+  box-shadow: var(--e-1);
+  display: flex; flex-direction: column; gap: var(--s-4);
+}
+.card > * { min-width: 0; }
+.card h2 {
+  font-size: var(--fs-heading); font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-tight); line-height: var(--lh-snug);
+}
+
+.card.quiet { background: var(--well); box-shadow: none; border-radius: var(--r-control); }
+
+.card.inline { flex-direction: row; align-items: center; justify-content: space-between; }
+
+.board { display: flex; flex-direction: column; gap: var(--s-5); }
+.board > h2 { font-size: var(--fs-heading); font-weight: var(--fw-semibold); letter-spacing: var(--tracking-tight); line-height: var(--lh-snug); }
+.lane { display: flex; flex-direction: column; gap: var(--s-4); }
+.lane h2, .lane h3 { font-size: var(--fs-label); font-weight: var(--fw-semibold); color: var(--neutral-text); padding: 0 var(--s-2); }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--s-4);
+  min-height: var(--target); align-self: flex-end;
+  padding: var(--s-3) var(--s-6);
+  border: 0; border-radius: var(--r-control);
+  font-size: var(--fs-label); font-weight: var(--fw-medium);
+  text-align: center; text-decoration: none; white-space: nowrap; cursor: pointer;
+  transition: background var(--motion);
+}
+.btn.primary { background: var(--text); color: var(--on-accent); }
+.btn.primary:hover { background: var(--accent-hover); }
+.btn.secondary { background: var(--control); color: var(--text); }
+.btn.secondary:hover { background: var(--control-hover); }
+
+.avatar { display: block; flex: none; width: var(--avatar-size); height: var(--avatar-size); border-radius: 50%; background: var(--skeleton); }
+.avatar.sm { width: var(--avatar-small-size); height: var(--avatar-small-size); }
+.icon { display: block; flex: none; width: var(--icon-size); height: var(--icon-size); border-radius: var(--s-3); background: var(--skeleton); }
+.bar .avatar { margin-left: auto; }
+
+.list > li { display: flex; align-items: center; gap: var(--s-5); padding: var(--s-4) 0; }
+.list > li:first-child { padding-top: 0; }
+.list > li:last-child { padding-bottom: 0; }
+.list .grow { flex: 1; min-width: 0; }
+
+.card.task { position: relative; transition: box-shadow var(--motion); }
+.card.task:has(.stretch:hover) { box-shadow: var(--e-2); }
+.stretch { color: inherit; text-decoration: none; }
+.stretch::after { content: ""; position: absolute; inset: 0; border-radius: inherit; }
+.card.task .btn { position: relative; z-index: 1; }
+
+.field { display: flex; flex-direction: column; gap: var(--s-3); }
+.field > label, .field > .label {
+  font-size: var(--fs-micro); font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-micro); text-transform: uppercase;
+  color: var(--muted);
+}
+input, textarea {
+  width: 100%; min-height: var(--target);
+  padding: var(--s-4) var(--s-5);
+  border: 0; border-radius: var(--r-control);
+  background: var(--subtle); font: inherit; color: inherit;
+}
+textarea { min-height: var(--field-height); resize: vertical; }
+
+.buttons { display: flex; justify-content: flex-end; gap: var(--s-4); }
+.buttons .btn { align-self: auto; }
+
+.page.narrow > * { max-width: var(--form-max); }
+
+.sk { display: block; height: var(--s-4); border-radius: var(--r-pill); background: var(--skeleton); width: var(--w, 100%); }
+.sk + .sk { margin-top: var(--s-3); }
+
+table { width: 100%; border-collapse: collapse; }
+th, td { text-align: left; padding: var(--s-4) var(--s-6); }
+thead th { padding-top: var(--s-5); }
+tbody tr:last-child td { padding-bottom: var(--s-5); }
+
+tbody td { height: calc(var(--target) + 2 * var(--s-4)); }
+td:last-child, th:last-child { text-align: right; }
+.card.table { padding: 0; gap: 0; overflow: hidden; }
+</style>
+<style id="screen-styles"></style>
+<script id="screens" type="application/json">{"S1-my-courses":{"title":"S1 My courses","body":"\n\u003cheader class=\"bar\">\n  \u003ca class=\"home\" href=\"#S1-my-courses\">Courses\u003c/a>\n  \u003cnav aria-label=\"Breadcrumb\">\u003col class=\"crumbs\">\u003cli>\u003cspan aria-current=\"page\">My courses\u003c/span>\u003c/li>\u003c/ol>\u003c/nav>\n  \u003cspan class=\"avatar sm\" role=\"img\" aria-label=\"Your profile\">\u003c/span>\n\u003c/header>\n\u003cmain class=\"page\">\n  \u003cdiv class=\"page-head\">\u003ch1>My courses\u003c/h1>\u003c/div>\n  \u003cdiv class=\"grid\">\n    \u003csection class=\"card\">\n      \u003ch2>ENGR101\u003c/h2>\n      \u003cspan class=\"sk\" style=\"--w:70%\">\u003c/span>\n      \u003cdiv class=\"card quiet inline\">\n        \u003cdiv>\u003cp class=\"eyebrow\">Your group\u003c/p>Group 7\u003c/div>\n        \u003ca class=\"btn secondary\" href=\"#S2-group\" aria-label=\"Open ENGR101 Group 7\">Open group\u003c/a>\n      \u003c/div>\n    \u003c/section>\n    \u003csection class=\"card\">\n      \u003ch2>SWEN225\u003c/h2>\n      \u003cspan class=\"sk\" style=\"--w:70%\">\u003c/span>\n      \u003cdiv class=\"card quiet inline\">\n        \u003cdiv>\u003cp class=\"eyebrow\">Your group\u003c/p>Team 4\u003c/div>\n        \u003ca class=\"btn secondary\" href=\"#\" aria-label=\"Open SWEN225 Team 4\">Open group\u003c/a>\n      \u003c/div>\n    \u003c/section>\n  \u003c/div>\n\u003c/main>\n","styles":""},"S2-group":{"title":"S2 Group page","body":"\n\u003cheader class=\"bar\">\n  \u003ca class=\"home\" href=\"#S1-my-courses\">Courses\u003c/a>\n  \u003cnav aria-label=\"Breadcrumb\">\u003col class=\"crumbs\">\u003cli>\u003ca href=\"#S1-my-courses\">My courses\u003c/a>\u003c/li>\u003cli>\u003cspan aria-current=\"page\">ENGR101 Group 7\u003c/span>\u003c/li>\u003c/ol>\u003c/nav>\n  \u003cspan class=\"avatar sm\" role=\"img\" aria-label=\"Your profile\">\u003c/span>\n\u003c/header>\n\u003cmain class=\"page\">\n  \u003cdiv class=\"page-head\">\n    \u003cdiv>\n      \u003cp class=\"eyebrow\">ENGR101\u003c/p>\n      \u003ch1>Group 7\u003c/h1>\n    \u003c/div>\n  \u003c/div>\n\n  \u003cdiv class=\"summary\">\n    \u003csection class=\"card\">\n      \u003ch2>Members\u003c/h2>\n      \u003cul class=\"list\">\n        \u003cli>\u003cspan class=\"avatar\">\u003c/span>\u003cdiv class=\"grow\">Member 1\u003cp class=\"muted\">member1@myvuw.ac.nz\u003c/p>\u003c/div>\u003cp class=\"muted last-active\">Last active today\u003c/p>\u003ca class=\"btn secondary\" href=\"#\" aria-label=\"Email Member 1\">Email\u003c/a>\u003c/li>\n        \u003cli>\u003cspan class=\"avatar\">\u003c/span>\u003cdiv class=\"grow\">Member 2\u003cp class=\"muted\">member2@myvuw.ac.nz\u003c/p>\u003c/div>\u003cp class=\"muted last-active\">Last active yesterday\u003c/p>\u003ca class=\"btn secondary\" href=\"#\" aria-label=\"Email Member 2\">Email\u003c/a>\u003c/li>\n        \u003cli>\u003cspan class=\"avatar\">\u003c/span>\u003cdiv class=\"grow\">Member 3\u003cp class=\"muted\">member3@myvuw.ac.nz\u003c/p>\u003c/div>\u003cp class=\"muted last-active\">Last active 2 days ago\u003c/p>\u003ca class=\"btn secondary\" href=\"#\" aria-label=\"Email Member 3\">Email\u003c/a>\u003c/li>\n        \u003cli>\u003cspan class=\"avatar\">\u003c/span>\u003cdiv class=\"grow\">Member 4\u003cp class=\"muted\">member4@myvuw.ac.nz\u003c/p>\u003c/div>\u003cp class=\"muted last-active flag\">No commits or edits for 14 days\u003c/p>\u003ca class=\"btn secondary\" href=\"#S6-email-member\" aria-label=\"Email Member 4\">Email\u003c/a>\u003c/li>\n        \u003cli>\u003cspan class=\"avatar\">\u003c/span>\u003cdiv class=\"grow\">Member 5\u003cp class=\"muted\">member5@myvuw.ac.nz\u003c/p>\u003c/div>\u003cp class=\"muted last-active\">Last active today\u003c/p>\u003ca class=\"btn secondary\" href=\"#\" aria-label=\"Email Member 5\">Email\u003c/a>\u003c/li>\n        \u003cli>\u003cspan class=\"avatar\">\u003c/span>\u003cdiv class=\"grow\">You\u003cp class=\"muted\">you@myvuw.ac.nz\u003c/p>\u003c/div>\u003c/li>\n      \u003c/ul>\n    \u003c/section>\n\n    \u003cdiv class=\"grid\" style=\"--cols:1\">\n      \u003csection class=\"card\">\n        \u003ch2>Project resources\u003c/h2>\n        \u003cul class=\"list\">\n          \u003cli>\u003cspan class=\"icon\">\u003c/span>\u003ca href=\"#\">GitLab repo\u003c/a>\u003c/li>\n          \u003cli>\u003cspan class=\"icon\">\u003c/span>\u003ca href=\"#\">Google Drive\u003c/a>\u003c/li>\n          \u003cli>\u003cspan class=\"icon\">\u003c/span>\u003ca href=\"#\">Group chat\u003c/a>\u003c/li>\n        \u003c/ul>\n      \u003c/section>\n      \u003csection class=\"card\">\n        \u003ch2>Submission\u003c/h2>\n        \u003cdiv class=\"row\">\u003cdiv>Due today, 11:59 pm\u003cp class=\"muted\">1 of 3 items ready\u003c/p>\u003c/div>\u003ca class=\"btn secondary\" href=\"#S4-submit\">Check submission\u003c/a>\u003c/div>\n      \u003c/section>\n    \u003c/div>\n  \u003c/div>\n\n  \u003csection class=\"board\">\n    \u003ch2>Tasks\u003c/h2>\n    \u003cdiv class=\"grid\">\n      \u003cdiv class=\"lane\">\n        \u003ch3>To do\u003c/h3>\n        \u003cdiv class=\"card inline task\">\u003cdiv>\u003ca class=\"stretch\" href=\"#S8-task\">Task A\u003c/a>\u003cp class=\"muted\">Unassigned\u003c/p>\u003c/div>\u003ca class=\"btn secondary\" href=\"#S3-task-assigned\" aria-label=\"Assign Task A to me\">Assign to me\u003c/a>\u003c/div>\n        \u003cdiv class=\"card inline task\">\u003cdiv>\u003ca class=\"stretch\" href=\"#S8-task\">Task B\u003c/a>\u003cp class=\"muted\">Unassigned\u003c/p>\u003c/div>\u003ca class=\"btn secondary\" href=\"#\" aria-label=\"Assign Task B to me\">Assign to me\u003c/a>\u003c/div>\n        \u003cdiv class=\"card inline task\">\u003cdiv>\u003ca class=\"stretch\" href=\"#S8-task\">Task C\u003c/a>\u003cp class=\"muted\">Member 3\u003c/p>\u003c/div>\u003c/div>\n      \u003c/div>\n      \u003cdiv class=\"lane\">\n        \u003ch3>In progress\u003c/h3>\n        \u003cdiv class=\"card inline task\">\u003cdiv>\u003ca class=\"stretch\" href=\"#S8-task\">Task D\u003c/a>\u003cp class=\"muted\">Member 2\u003c/p>\u003c/div>\u003c/div>\n      \u003c/div>\n      \u003cdiv class=\"lane\">\n        \u003ch3>Done\u003c/h3>\n        \u003cdiv class=\"card inline task\">\u003cdiv>\u003ca class=\"stretch\" href=\"#S8-task\">Task E\u003c/a>\u003cp class=\"muted\">Member 1\u003c/p>\u003c/div>\u003c/div>\n      \u003c/div>\n    \u003c/div>\n  \u003c/section>\n\u003c/main>\n","styles":""},"S3-task-assigned":{"title":"S3 Task assigned","body":"\n\u003cheader class=\"bar\">\n  \u003ca class=\"home\" href=\"#S1-my-courses\">Courses\u003c/a>\n  \u003cnav aria-label=\"Breadcrumb\">\u003col class=\"crumbs\">\u003cli>\u003ca href=\"#S1-my-courses\">My courses\u003c/a>\u003c/li>\u003cli>\u003cspan aria-current=\"page\">ENGR101 Group 7\u003c/span>\u003c/li>\u003c/ol>\u003c/nav>\n  \u003cspan class=\"avatar sm\" role=\"img\" aria-label=\"Your profile\">\u003c/span>\n\u003c/header>\n\u003cmain class=\"page\">\n  \u003cdiv class=\"page-head\">\n    \u003cdiv>\n      \u003cp class=\"eyebrow\">ENGR101\u003c/p>\n      \u003ch1>Group 7\u003c/h1>\n    \u003c/div>\n  \u003c/div>\n\n  \u003cdiv class=\"summary\">\n    \u003csection class=\"card\">\n      \u003ch2>Members\u003c/h2>\n      \u003cul class=\"list\">\n        \u003cli>\u003cspan class=\"avatar\">\u003c/span>\u003cdiv class=\"grow\">Member 1\u003cp class=\"muted\">member1@myvuw.ac.nz\u003c/p>\u003c/div>\u003cp class=\"muted last-active\">Last active today\u003c/p>\u003ca class=\"btn secondary\" href=\"#\" aria-label=\"Email Member 1\">Email\u003c/a>\u003c/li>\n        \u003cli>\u003cspan class=\"avatar\">\u003c/span>\u003cdiv class=\"grow\">Member 2\u003cp class=\"muted\">member2@myvuw.ac.nz\u003c/p>\u003c/div>\u003cp class=\"muted last-active\">Last active yesterday\u003c/p>\u003ca class=\"btn secondary\" href=\"#\" aria-label=\"Email Member 2\">Email\u003c/a>\u003c/li>\n        \u003cli>\u003cspan class=\"avatar\">\u003c/span>\u003cdiv class=\"grow\">Member 3\u003cp class=\"muted\">member3@myvuw.ac.nz\u003c/p>\u003c/div>\u003cp class=\"muted last-active\">Last active 2 days ago\u003c/p>\u003ca class=\"btn secondary\" href=\"#\" aria-label=\"Email Member 3\">Email\u003c/a>\u003c/li>\n        \u003cli>\u003cspan class=\"avatar\">\u003c/span>\u003cdiv class=\"grow\">Member 4\u003cp class=\"muted\">member4@myvuw.ac.nz\u003c/p>\u003c/div>\u003cp class=\"muted last-active flag\">No commits or edits for 14 days\u003c/p>\u003ca class=\"btn secondary\" href=\"#S6-email-member\" aria-label=\"Email Member 4\">Email\u003c/a>\u003c/li>\n        \u003cli>\u003cspan class=\"avatar\">\u003c/span>\u003cdiv class=\"grow\">Member 5\u003cp class=\"muted\">member5@myvuw.ac.nz\u003c/p>\u003c/div>\u003cp class=\"muted last-active\">Last active today\u003c/p>\u003ca class=\"btn secondary\" href=\"#\" aria-label=\"Email Member 5\">Email\u003c/a>\u003c/li>\n        \u003cli>\u003cspan class=\"avatar\">\u003c/span>\u003cdiv class=\"grow\">You\u003cp class=\"muted\">you@myvuw.ac.nz\u003c/p>\u003c/div>\u003c/li>\n      \u003c/ul>\n    \u003c/section>\n\n    \u003cdiv class=\"grid\" style=\"--cols:1\">\n      \u003csection class=\"card\">\n        \u003ch2>Project resources\u003c/h2>\n        \u003cul class=\"list\">\n          \u003cli>\u003cspan class=\"icon\">\u003c/span>\u003ca href=\"#\">GitLab repo\u003c/a>\u003c/li>\n          \u003cli>\u003cspan class=\"icon\">\u003c/span>\u003ca href=\"#\">Google Drive\u003c/a>\u003c/li>\n          \u003cli>\u003cspan class=\"icon\">\u003c/span>\u003ca href=\"#\">Group chat\u003c/a>\u003c/li>\n        \u003c/ul>\n      \u003c/section>\n      \u003csection class=\"card\">\n        \u003ch2>Submission\u003c/h2>\n        \u003cdiv class=\"row\">\u003cdiv>Due today, 11:59 pm\u003cp class=\"muted\">1 of 3 items ready\u003c/p>\u003c/div>\u003ca class=\"btn secondary\" href=\"#S4-submit\">Check submission\u003c/a>\u003c/div>\n      \u003c/section>\n    \u003c/div>\n  \u003c/div>\n\n  \u003csection class=\"board\">\n    \u003ch2>Tasks\u003c/h2>\n    \u003cdiv class=\"grid\">\n      \u003cdiv class=\"lane\">\n        \u003ch3>To do\u003c/h3>\n        \u003cdiv class=\"card inline task\">\u003cdiv>\u003ca class=\"stretch\" href=\"#S8-task\">Task A\u003c/a>\u003cp class=\"muted\">You\u003c/p>\u003c/div>\u003ca class=\"btn secondary\" href=\"#S2-group\" aria-label=\"Unassign Task A\">Unassign\u003c/a>\u003c/div>\n        \u003cdiv class=\"card inline task\">\u003cdiv>\u003ca class=\"stretch\" href=\"#S8-task\">Task B\u003c/a>\u003cp class=\"muted\">Unassigned\u003c/p>\u003c/div>\u003ca class=\"btn secondary\" href=\"#\" aria-label=\"Assign Task B to me\">Assign to me\u003c/a>\u003c/div>\n        \u003cdiv class=\"card inline task\">\u003cdiv>\u003ca class=\"stretch\" href=\"#S8-task\">Task C\u003c/a>\u003cp class=\"muted\">Member 3\u003c/p>\u003c/div>\u003c/div>\n      \u003c/div>\n      \u003cdiv class=\"lane\">\n        \u003ch3>In progress\u003c/h3>\n        \u003cdiv class=\"card inline task\">\u003cdiv>\u003ca class=\"stretch\" href=\"#S8-task\">Task D\u003c/a>\u003cp class=\"muted\">Member 2\u003c/p>\u003c/div>\u003c/div>\n      \u003c/div>\n      \u003cdiv class=\"lane\">\n        \u003ch3>Done\u003c/h3>\n        \u003cdiv class=\"card inline task\">\u003cdiv>\u003ca class=\"stretch\" href=\"#S8-task\">Task E\u003c/a>\u003cp class=\"muted\">Member 1\u003c/p>\u003c/div>\u003c/div>\n      \u003c/div>\n    \u003c/div>\n  \u003c/section>\n\u003c/main>\n","styles":""},"S4-submit":{"title":"S4 Ready to submit?","body":"\n\u003cheader class=\"bar\">\n  \u003ca class=\"home\" href=\"#S1-my-courses\">Courses\u003c/a>\n  \u003cnav aria-label=\"Breadcrumb\">\u003col class=\"crumbs\">\u003cli>\u003ca href=\"#S1-my-courses\">My courses\u003c/a>\u003c/li>\u003cli>\u003ca href=\"#S2-group\">ENGR101 Group 7\u003c/a>\u003c/li>\u003cli>\u003cspan aria-current=\"page\">Ready to submit?\u003c/span>\u003c/li>\u003c/ol>\u003c/nav>\n  \u003cspan class=\"avatar sm\" role=\"img\" aria-label=\"Your profile\">\u003c/span>\n\u003c/header>\n\u003cmain class=\"page\">\n  \u003cdiv class=\"page-head\">\n    \u003cdiv>\n      \u003ch1>Ready to submit?\u003c/h1>\n      \u003cp class=\"muted\">Due today, 11:59 pm\u003c/p>\n    \u003c/div>\n  \u003c/div>\n  \u003cdiv class=\"card table\">\n    \u003ctable>\n      \u003cthead>\u003ctr>\u003cth class=\"eyebrow\">Deliverable\u003c/th>\u003cth class=\"eyebrow\">Owner\u003c/th>\u003cth class=\"eyebrow\">Status\u003c/th>\u003cth>\u003c/th>\u003c/tr>\u003c/thead>\n      \u003ctbody>\n        \u003ctr>\u003ctd>Code (GitLab)\u003c/td>\u003ctd>Member 1\u003c/td>\u003ctd>Ready\u003c/td>\u003ctd>\u003c/td>\u003c/tr>\n        \u003ctr>\u003ctd>Report\u003c/td>\u003ctd>Member 3\u003c/td>\u003ctd class=\"flag\">Unfinished\u003c/td>\u003ctd>\u003ca class=\"btn secondary\" href=\"#\" aria-label=\"Email Member 3\">Email\u003c/a>\u003c/td>\u003c/tr>\n        \u003ctr>\u003ctd>Demo video\u003c/td>\u003ctd>You\u003c/td>\u003ctd class=\"flag\">Missing\u003c/td>\u003ctd>\u003ca class=\"btn secondary\" href=\"#\" aria-label=\"Add demo video link\">Add link\u003c/a>\u003c/td>\u003c/tr>\n      \u003c/tbody>\n    \u003c/table>\n  \u003c/div>\n  \u003cdiv class=\"row\">\u003cp class=\"muted\">2 items are not ready. Submitting now sends them as they are.\u003c/p>\u003ca class=\"btn primary\" href=\"#S5-submitted\">Submit\u003c/a>\u003c/div>\n\u003c/main>\n","styles":""},"S6-email-member":{"title":"S6 Email a member","body":"\n\u003cheader class=\"bar\">\n  \u003ca class=\"home\" href=\"#S1-my-courses\">Courses\u003c/a>\n  \u003cnav aria-label=\"Breadcrumb\">\u003col class=\"crumbs\">\u003cli>\u003ca href=\"#S1-my-courses\">My courses\u003c/a>\u003c/li>\u003cli>\u003ca href=\"#S2-group\">ENGR101 Group 7\u003c/a>\u003c/li>\u003cli>\u003cspan aria-current=\"page\">Email Member 4\u003c/span>\u003c/li>\u003c/ol>\u003c/nav>\n  \u003cspan class=\"avatar sm\" role=\"img\" aria-label=\"Your profile\">\u003c/span>\n\u003c/header>\n\u003cmain class=\"page narrow\">\n  \u003cdiv class=\"page-head\">\u003ch1>Email Member 4\u003c/h1>\u003c/div>\n  \u003cdiv class=\"card\">\n    \u003cdiv class=\"field\">\u003cspan class=\"label\">To\u003c/span>\u003cp>Member 4 (member4@myvuw.ac.nz)\u003c/p>\u003c/div>\n    \u003cdiv class=\"field\">\u003clabel for=\"subject\">Subject\u003c/label>\u003cinput id=\"subject\" value=\"ENGR101 Group 7\">\u003c/div>\n    \u003cdiv class=\"field\">\u003clabel for=\"message\">Message\u003c/label>\u003ctextarea id=\"message\">\u003c/textarea>\u003c/div>\n    \u003cdiv class=\"buttons\">\u003ca class=\"btn secondary\" href=\"#S2-group\">Cancel\u003c/a>\u003ca class=\"btn primary\" href=\"#S7-email-sent\">Send\u003c/a>\u003c/div>\n  \u003c/div>\n\u003c/main>\n","styles":""},"S8-task":{"title":"S8 Task","body":"\n\u003cheader class=\"bar\">\n  \u003ca class=\"home\" href=\"#S1-my-courses\">Courses\u003c/a>\n  \u003cnav aria-label=\"Breadcrumb\">\u003col class=\"crumbs\">\u003cli>\u003ca href=\"#S1-my-courses\">My courses\u003c/a>\u003c/li>\u003cli>\u003ca href=\"#S2-group\">ENGR101 Group 7\u003c/a>\u003c/li>\u003cli>\u003cspan aria-current=\"page\">Task D\u003c/span>\u003c/li>\u003c/ol>\u003c/nav>\n  \u003cspan class=\"avatar sm\" role=\"img\" aria-label=\"Your profile\">\u003c/span>\n\u003c/header>\n\u003cmain class=\"page narrow\">\n  \u003cdiv class=\"page-head\">\n    \u003cdiv>\n      \u003ch1>Task D\u003c/h1>\n      \u003cp class=\"muted\">Member 2 · In progress\u003c/p>\n    \u003c/div>\n    \u003cdiv class=\"actions\">\u003ca class=\"btn primary\" href=\"#S9-ask-help\">Ask a tutor for help\u003c/a>\u003c/div>\n  \u003c/div>\n\n  \u003csection class=\"card\">\n    \u003ch2>Links\u003c/h2>\n    \u003cdiv class=\"card quiet\">\u003ca href=\"#\">GitLab issue\u003c/a>\u003c/div>\n  \u003c/section>\n\n  \u003csection class=\"card\">\n    \u003ch2>Notes\u003c/h2>\n    \u003cdiv class=\"card quiet\">\n      \u003cp class=\"muted\">Member 2 · yesterday\u003c/p>\n      \u003cp>blah blah blah blah\u003c/p>\n    \u003c/div>\n  \u003c/section>\n\n\u003c/main>\n","styles":""},"S5-submitted":{"title":"S5 Submitted","body":"\n\u003cheader class=\"bar\">\n  \u003ca class=\"home\" href=\"#S1-my-courses\">Courses\u003c/a>\n  \u003cnav aria-label=\"Breadcrumb\">\u003col class=\"crumbs\">\u003cli>\u003ca href=\"#S1-my-courses\">My courses\u003c/a>\u003c/li>\u003cli>\u003ca href=\"#S2-group\">ENGR101 Group 7\u003c/a>\u003c/li>\u003cli>\u003cspan aria-current=\"page\">Submitted\u003c/span>\u003c/li>\u003c/ol>\u003c/nav>\n  \u003cspan class=\"avatar sm\" role=\"img\" aria-label=\"Your profile\">\u003c/span>\n\u003c/header>\n\u003cmain class=\"page\">\n  \u003cdiv class=\"page-head\">\n    \u003cdiv>\n      \u003ch1>Submitted\u003c/h1>\n      \u003cp class=\"muted\">This list has been emailed to every member.\u003c/p>\n    \u003c/div>\n  \u003c/div>\n  \u003cdiv class=\"card table\">\n    \u003ctable>\n      \u003cthead>\u003ctr>\u003cth class=\"eyebrow\">Received\u003c/th>\u003c/tr>\u003c/thead>\n      \u003ctbody>\n        \u003ctr>\u003ctd>Code (GitLab)\u003c/td>\u003c/tr>\n        \u003ctr>\u003ctd>Report\u003c/td>\u003c/tr>\n        \u003ctr>\u003ctd>Demo video\u003c/td>\u003c/tr>\n      \u003c/tbody>\n    \u003c/table>\n  \u003c/div>\n  \u003ca class=\"btn secondary\" href=\"#S2-group\">Back to group\u003c/a>\n\u003c/main>\n","styles":""},"S7-email-sent":{"title":"S7 Email sent","body":"\n\u003cheader class=\"bar\">\n  \u003ca class=\"home\" href=\"#S1-my-courses\">Courses\u003c/a>\n  \u003cnav aria-label=\"Breadcrumb\">\u003col class=\"crumbs\">\u003cli>\u003ca href=\"#S1-my-courses\">My courses\u003c/a>\u003c/li>\u003cli>\u003ca href=\"#S2-group\">ENGR101 Group 7\u003c/a>\u003c/li>\u003cli>\u003cspan aria-current=\"page\">Email sent\u003c/span>\u003c/li>\u003c/ol>\u003c/nav>\n  \u003cspan class=\"avatar sm\" role=\"img\" aria-label=\"Your profile\">\u003c/span>\n\u003c/header>\n\u003cmain class=\"page narrow\">\n  \u003cdiv class=\"card\">\n    \u003ch1>Email sent\u003c/h1>\n    \u003cp class=\"muted\">Sent to Member 4 at member4@myvuw.ac.nz.\u003c/p>\n    \u003ca class=\"btn secondary\" href=\"#S2-group\">Back to group\u003c/a>\n  \u003c/div>\n\u003c/main>\n","styles":""},"S9-ask-help":{"title":"S9 Ask a tutor for help","body":"\n\u003cheader class=\"bar\">\n  \u003ca class=\"home\" href=\"#S1-my-courses\">Courses\u003c/a>\n  \u003cnav aria-label=\"Breadcrumb\">\u003col class=\"crumbs\">\u003cli>\u003ca href=\"#S1-my-courses\">My courses\u003c/a>\u003c/li>\u003cli>\u003ca href=\"#S2-group\">ENGR101 Group 7\u003c/a>\u003c/li>\u003cli>\u003ca href=\"#S8-task\">Task D\u003c/a>\u003c/li>\u003cli>\u003cspan aria-current=\"page\">Ask a tutor for help\u003c/span>\u003c/li>\u003c/ol>\u003c/nav>\n  \u003cspan class=\"avatar sm\" role=\"img\" aria-label=\"Your profile\">\u003c/span>\n\u003c/header>\n\u003cmain class=\"page narrow\">\n  \u003cdiv class=\"page-head\">\u003ch1>Ask a tutor for help\u003c/h1>\u003c/div>\n  \u003cdiv class=\"card\">\n    \u003cdiv class=\"field\">\u003cspan class=\"label\">To\u003c/span>\u003cp>ENGR101 tutors\u003c/p>\u003c/div>\n    \u003cdiv class=\"field\">\n      \u003cspan class=\"label\">Attached\u003c/span>\n      \u003cul class=\"list\">\n        \u003cli>\u003cspan class=\"icon\">\u003c/span>Task D\u003c/li>\n        \u003cli>\u003cspan class=\"icon\">\u003c/span>GitLab issue\u003c/li>\n        \u003cli>\u003cspan class=\"icon\">\u003c/span>Notes\u003c/li>\n      \u003c/ul>\n    \u003c/div>\n    \u003cdiv class=\"field\">\u003clabel for=\"message\">Message\u003c/label>\u003ctextarea id=\"message\">\u003c/textarea>\u003c/div>\n    \u003cdiv class=\"buttons\">\u003ca class=\"btn secondary\" href=\"#S8-task\">Cancel\u003c/a>\u003ca class=\"btn primary\" href=\"#S10-help-sent\">Send\u003c/a>\u003c/div>\n  \u003c/div>\n\u003c/main>\n","styles":""},"S10-help-sent":{"title":"S10 Request sent","body":"\n\u003cheader class=\"bar\">\n  \u003ca class=\"home\" href=\"#S1-my-courses\">Courses\u003c/a>\n  \u003cnav aria-label=\"Breadcrumb\">\u003col class=\"crumbs\">\u003cli>\u003ca href=\"#S1-my-courses\">My courses\u003c/a>\u003c/li>\u003cli>\u003ca href=\"#S2-group\">ENGR101 Group 7\u003c/a>\u003c/li>\u003cli>\u003ca href=\"#S8-task\">Task D\u003c/a>\u003c/li>\u003cli>\u003cspan aria-current=\"page\">Request sent\u003c/span>\u003c/li>\u003c/ol>\u003c/nav>\n  \u003cspan class=\"avatar sm\" role=\"img\" aria-label=\"Your profile\">\u003c/span>\n\u003c/header>\n\u003cmain class=\"page narrow\">\n  \u003cdiv class=\"card\">\n    \u003ch1>Request sent\u003c/h1>\n    \u003cp class=\"muted\">The tutor's reply will be emailed to every member of the group.\u003c/p>\n    \u003ca class=\"btn secondary\" href=\"#S8-task\">Back to task\u003c/a>\n  \u003c/div>\n\u003c/main>\n","styles":""}}</script>
+</head>
+<body>
+<script>
+(() => {
+  const screens = JSON.parse(document.getElementById("screens").textContent);
+  const styles = document.getElementById("screen-styles");
+
+  function showScreen() {
+    const name = location.hash.slice(1);
+    const screen = Object.hasOwn(screens, name)
+      ? screens[name]
+      : screens["S1-my-courses"];
+    document.title = screen.title;
+    styles.textContent = screen.styles;
+    document.body.innerHTML = screen.body;
+    window.scrollTo(0, 0);
+  }
+
+  document.addEventListener("click", (event) => {
+    if (event.target.closest('a[href="#"]')) event.preventDefault();
+  });
+  window.addEventListener("hashchange", showScreen);
+  showScreen();
+})();
+
+</script>
+</body>
+</html>

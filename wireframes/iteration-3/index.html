@@ -1,0 +1,664 @@
+<!-- a lot of these tokens I borrowed from my Project 2 design and adapted for here - Dylan -->
+<!-- Google drive, discord and gitlab are copyright their respective owners obviously - shouldn't matter for this project -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>S1 My courses</title>
+<style>
+:root {
+  color-scheme: light dark;
+  --c-bg: #fafafa;
+  --c-surface: #ffffff;
+  --c-surface-2: #f5f5f5;
+  --c-surface-3: #efefef;
+  --c-raised: #ffffff;
+  --c-fill: #efefef;
+  --c-fill-strong: #e5e5e5;
+  --c-well: #f4f4f4;
+  --c-ink: #171717;
+  --c-ink-2: #525252;
+  --c-ink-3: #6b6b6b;
+  --c-ink-4: #858585;
+  --c-on-ink: #ffffff;
+  --c-ink-hover: #333333;
+  --c-green: #16a34a;
+  --c-green-text: #15803d;
+  --c-green-bg: #f0fdf4;
+  --c-red: #b91c1c;
+  --c-red-text: #b91c1c;
+  --c-red-bg: #fef2f2;
+  --c-accent: #2563eb;
+  --c-shadow: 0 0 0;
+  --c-shadow-a: 0.12;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --c-bg: #0e0e0e;
+    --c-surface: #161616;
+    --c-surface-2: #212121;
+    --c-surface-3: #292929;
+    --c-raised: #262626;
+    --c-fill: #2b2b2b;
+    --c-fill-strong: #383838;
+    --c-well: #1d1d1d;
+    --c-ink: #ededed;
+    --c-ink-2: #b0b0b0;
+    --c-ink-3: #a1a1a1;
+    --c-ink-4: #7a7a7a;
+    --c-on-ink: #111111;
+    --c-ink-hover: #cfcfcf;
+    --c-green: #22c55e;
+    --c-green-text: #4ade80;
+    --c-green-bg: rgb(34 197 94 / 0.12);
+    --c-red: #f87171;
+    --c-red-text: #f87171;
+    --c-red-bg: rgb(248 113 113 / 0.1);
+    --c-accent: #60a5fa;
+    --c-shadow-a: 0.5;
+  }
+}
+:root[data-theme='light'] { color-scheme: light; }
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --c-bg: #0e0e0e;
+  --c-surface: #161616;
+  --c-surface-2: #212121;
+  --c-surface-3: #292929;
+  --c-raised: #262626;
+  --c-fill: #2b2b2b;
+  --c-fill-strong: #383838;
+  --c-well: #1d1d1d;
+  --c-ink: #ededed;
+  --c-ink-2: #b0b0b0;
+  --c-ink-3: #a1a1a1;
+  --c-ink-4: #7a7a7a;
+  --c-on-ink: #111111;
+  --c-ink-hover: #cfcfcf;
+  --c-green: #22c55e;
+  --c-green-text: #4ade80;
+  --c-green-bg: rgb(34 197 94 / 0.12);
+  --c-red: #f87171;
+  --c-red-text: #f87171;
+  --c-red-bg: rgb(248 113 113 / 0.1);
+  --c-accent: #60a5fa;
+  --c-shadow-a: 0.5;
+}
+
+:root {
+  --bg: var(--c-bg);
+  --panel: var(--c-surface);
+  --hover: var(--c-surface-2);
+  --active: var(--c-surface-3);
+  --subtle: var(--c-surface-2);
+  --well: var(--c-well);
+  --raised: var(--c-raised);
+  --fill: var(--c-fill);
+  --fill-strong: var(--c-fill-strong);
+  --text: var(--c-ink);
+  --neutral-text: var(--c-ink-2);
+  --muted: var(--c-ink-3);
+  --faint: var(--c-ink-4);
+  --on-accent: var(--c-on-ink);
+  --accent-hover: var(--c-ink-hover);
+  --shadow: rgb(var(--c-shadow) / var(--c-shadow-a));
+  --ready: var(--c-green);
+  --ready-text: var(--c-green-text);
+  --ready-bg: var(--c-green-bg);
+  --missing: var(--c-red);
+  --missing-text: var(--c-red-text);
+  --missing-bg: var(--c-red-bg);
+  --focus: var(--c-accent);
+}
+
+:root {
+  --sans: "SF Pro", "SF Pro Text", "SF Pro Display", -apple-system,
+          BlinkMacSystemFont, system-ui, 'Segoe UI', sans-serif;
+  --mono: "SF Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --fs-hero: 30px;
+  --fs-title: 22px;
+  --fs-value: 20px;
+  --fs-heading: 17px;
+  --fs-body: 15px;
+  --fs-label: 13px;
+  --fs-micro: 12px;
+  --lh-tight: 1.15;
+  --lh-snug: 1.3;
+  --lh-body: 1.45;
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+  --tracking-tight: -0.02em;
+  --tracking-micro: 0.06em;
+  --s-1: 2px;  --s-2: 4px;  --s-3: 6px;  --s-4: 8px;  --s-5: 12px;
+  --s-6: 16px; --s-7: 20px; --s-8: 24px; --s-9: 32px; --s-10: 40px;
+  --gutter: var(--s-10);
+  --stack: var(--s-6);
+  --content-max: 1200px;
+  --sheet-max: 560px;
+  --wide-max: 1040px;
+  --side-width: 340px;
+  --course-min: 320px;
+  --owner-col: 140px;
+  --status-col: 84px;
+  --action-col: 96px;
+  --bar-height: 56px;
+  --avatar-size: 32px;
+  --avatar-small-size: 24px;
+  --lead-col: 32px;
+  --cushion-width: 150px;
+  --field-height: 140px;
+  --r-control: 8px;
+  --pad-card: var(--s-6);
+  --pad-track: var(--s-2);
+  --r-inner: calc(var(--tap) / 2);
+  --r-card: calc(var(--r-inner) + var(--pad-card));
+  --r-step: calc(var(--r-inner) - var(--pad-track));
+  --pad-step: var(--s-5);
+  --inset-text: calc(var(--pad-track) + var(--pad-step));
+  --r-pill: 999px;
+  --e-1: 0 1px 2px rgb(var(--c-shadow) / calc(var(--c-shadow-a) * 0.35));
+  --e-2: 0 2px 8px rgb(var(--c-shadow) / calc(var(--c-shadow-a) * 0.55));
+  --e-3: 0 8px 28px rgb(var(--c-shadow) / var(--c-shadow-a));
+  --motion: 140ms cubic-bezier(0.2, 0, 0, 1);
+  --tap: 44px;
+  --tap-compact: 32px;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  font: var(--fw-regular) var(--fs-body)/var(--lh-body) var(--sans);
+  color: var(--text); background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+button, input, select, textarea { font: inherit; color: inherit; }
+[hidden] { display: none !important; }
+h1, h2, h3, p, ul, ol { margin: 0; }
+ul, ol { padding: 0; list-style: none; }
+a { color: var(--text); text-decoration: none; }
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; border-radius: var(--s-2); }
+time, .num, .step-time, .cushion { font-variant-numeric: tabular-nums; }
+
+.icon { width: 16px; height: 16px; flex: none; display: inline-block; vertical-align: -3px;
+  fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.icon.lg { width: 20px; height: 20px; }
+
+.bar {
+  display: flex; align-items: center; gap: var(--s-6);
+  height: var(--bar-height);
+  padding: 0 max(var(--gutter), calc((100% - var(--content-max)) / 2));
+}
+.bar .home { font-weight: var(--fw-semibold); }
+.bar .avatar { margin-left: auto; }
+.crumbs { display: flex; align-items: center; gap: var(--s-2); font-size: var(--fs-body); }
+.crumbs li { display: inline-flex; align-items: center; gap: var(--s-2); }
+.crumbs li + li::before {
+  content: ""; width: 12px; height: 12px; background: var(--faint);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 6l6 6l-6 6'/%3E%3C/svg%3E") center / contain no-repeat;
+          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 6l6 6l-6 6'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+.crumbs a { display: inline-flex; align-items: center; min-height: 24px; color: var(--muted); transition: color var(--motion); }
+.crumbs a:hover { color: var(--text); }
+.crumbs [aria-current="page"] { color: var(--text); }
+
+.page {
+  display: flex; flex-direction: column; gap: var(--stack);
+  max-width: calc(var(--content-max) + 2 * var(--gutter));
+  margin: 0 auto;
+  padding: var(--s-8) var(--gutter) var(--s-10);
+}
+
+.page.sheet-page { max-width: calc(var(--sheet-max) + 2 * var(--gutter)); }
+.page.wide-page { max-width: calc(var(--wide-max) + 2 * var(--gutter)); }
+
+.head { display: flex; flex-direction: column; gap: var(--s-2); }
+.head h1 {
+  font-size: var(--fs-title); font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-tight); line-height: var(--lh-tight);
+}
+.lede { font-size: var(--fs-body); color: var(--neutral-text); line-height: var(--lh-snug);
+  display: flex; align-items: center; flex-wrap: wrap; gap: var(--s-3); }
+
+.section-title { font-size: var(--fs-heading); font-weight: var(--fw-semibold); letter-spacing: var(--tracking-tight); }
+.board { display: flex; flex-direction: column; gap: var(--s-5); }
+.summary { display: grid; grid-template-columns: 2fr 1fr; gap: var(--s-6); align-items: start; }
+.column { display: flex; flex-direction: column; gap: var(--stack); }
+.split { display: grid; grid-template-columns: minmax(0, 1fr) var(--side-width); gap: var(--s-6); align-items: start; }
+
+.course-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(var(--course-min), 1fr)); gap: var(--s-6); align-items: start; }
+.course-card { position: relative; transition: box-shadow var(--motion); }
+.course-card .ask-label { margin-bottom: var(--s-2); }
+.course-group { display: flex; align-items: center; gap: var(--s-4); }
+.course-group > .icon { color: var(--neutral-text); }
+.course-group .chevron { margin-left: auto; color: var(--faint); transition: color var(--motion); }
+.course-card .stretch::after { content: ""; position: absolute; inset: 0; border-radius: inherit; }
+.course-card .stretch:focus-visible { outline: none; }
+.course-card:has(.stretch:focus-visible) { outline: 2px solid var(--focus); outline-offset: 2px; }
+.course-card:has(.stretch:hover) { box-shadow: var(--e-3); }
+.course-card:has(.stretch:hover) .chevron { color: var(--text); }
+
+.card {
+  background: var(--panel);
+  border-radius: var(--r-card);
+  padding: var(--s-7) var(--pad-card) var(--pad-card);
+  box-shadow: var(--e-2);
+  display: flex; flex-direction: column; gap: var(--s-5);
+}
+.card > :not(.track, .sheet-actions, .field),
+.field > :not(input, textarea) { margin-inline: var(--inset-text); }
+.card > :last-child:not(.track, .sheet-actions, .field) { margin-bottom: var(--s-2); }
+.card > * { min-width: 0; }
+.card h2 {
+  font-size: var(--fs-heading); font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-tight); line-height: var(--lh-snug);
+}
+
+.sheet-head { display: flex; align-items: center; justify-content: space-between; gap: var(--s-5); }
+.sheet-title { display: block; font-size: var(--fs-value); font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-tight); line-height: var(--lh-tight); color: var(--text); }
+.sheet-sub { display: block; font-size: var(--fs-label); color: var(--muted); }
+
+.btn {
+  display: flex; align-items: center; justify-content: center; gap: var(--s-4);
+  min-height: var(--tap);
+  padding: var(--s-5) var(--s-7);
+  border: 0; border-radius: var(--r-pill);
+  font-size: var(--fs-body); font-weight: var(--fw-medium);
+  text-align: center; text-decoration: none; white-space: nowrap; cursor: pointer;
+  transition: background var(--motion);
+}
+.btn.primary { background: var(--text); color: var(--on-accent); }
+.btn.primary:hover { background: var(--accent-hover); }
+.btn.secondary { background: var(--fill); color: var(--text); }
+.btn.secondary:hover { background: var(--fill-strong); }
+.track .btn.secondary { background: var(--raised); box-shadow: var(--e-1); }
+.track .btn.secondary:hover, .step.is-now .btn.secondary { background: var(--fill-strong); }
+.step.is-now .btn.secondary { box-shadow: none; }
+.btn.ghost { background: transparent; color: var(--muted); }
+.btn.ghost:hover { color: var(--text); background: var(--hover); }
+.btn.compact { min-height: var(--tap-compact); padding: var(--s-2) var(--s-6); font-size: var(--fs-label); }
+
+.sheet-actions { display: grid; grid-template-columns: auto 1fr; gap: var(--s-4); }
+.sheet-actions.single { grid-template-columns: 1fr; }
+
+.avatar {
+  display: inline-grid; place-items: center; flex: none;
+  width: var(--avatar-size); height: var(--avatar-size); border-radius: 50%;
+  background: var(--active); color: var(--neutral-text);
+  font-size: var(--fs-micro); font-weight: var(--fw-semibold);
+}
+.track .avatar:not(.empty) { background: var(--raised); box-shadow: var(--e-1); }
+.step.is-now .avatar:not(.empty) { background: var(--fill); box-shadow: none; }
+.avatar.sm { width: var(--avatar-small-size); height: var(--avatar-small-size); font-size: var(--fs-micro); letter-spacing: -0.02em; }
+.avatar.empty { background: var(--fill-strong); }
+
+.logo { width: 22px; height: 22px; flex: none; display: inline-block; vertical-align: -5px; stroke: none; }
+.note-pill .logo { width: 14px; height: 14px; vertical-align: -2px; }
+
+[data-status] { --status: var(--neutral-text); --status-text: var(--neutral-text); --status-bg: var(--well); }
+[data-status="ready"]      { --status: var(--ready);      --status-text: var(--ready-text);      --status-bg: var(--ready-bg); }
+[data-status="missing"]    { --status: var(--missing);    --status-text: var(--missing-text);    --status-bg: var(--missing-bg); }
+
+.cushion {
+  display: flex; flex: none; flex-direction: column; align-items: flex-end;
+  text-align: right; line-height: var(--lh-tight);
+}
+.cushion b {
+  font-size: var(--fs-heading); font-weight: var(--fw-semibold); color: var(--status-text);
+  letter-spacing: var(--tracking-tight);
+}
+.cushion small { font-size: var(--fs-micro); font-weight: var(--fw-medium); color: var(--muted); white-space: nowrap; }
+.cushion.in-row { width: var(--cushion-width); }
+.cushion.in-row b { font-size: var(--fs-body); }
+
+.consequence { font-size: var(--fs-label); font-weight: var(--fw-medium); color: var(--neutral-text); white-space: nowrap; }
+[data-status="missing"] > .consequence { color: var(--missing-text); }
+
+.watch { display: grid; grid-template-columns: 18px 1fr; gap: var(--s-4);
+  font-size: var(--fs-label); color: var(--text); line-height: var(--lh-snug); }
+.watch .icon { color: var(--neutral-text); margin-top: 1px; }
+
+.arrived-mark {
+  display: grid; place-items: center; flex: none;
+  width: 28px; height: 28px; border-radius: var(--r-pill);
+  background: var(--status-bg); color: var(--status-text);
+}
+.result-head { display: flex; align-items: center; gap: var(--s-4); }
+
+.rows > li {
+  display: grid; grid-template-columns: var(--lead-col) 1fr auto; align-items: center;
+  gap: var(--s-4); min-height: var(--tap); padding: var(--s-4) 0;
+}
+.rows > li:first-child { padding-top: 0; }
+.rows > li:last-child { padding-bottom: 0; }
+.rows > li { position: relative; }
+.rows .trail { display: flex; align-items: center; gap: var(--s-6); }
+.rows .chevron, .rows .external { color: var(--faint); transition: color var(--motion); }
+.rows .stretch { color: inherit; }
+.rows .stretch::after { content: ""; position: absolute; inset: 0; }
+.rows > li:has(.stretch:hover) .chevron, .rows > li:has(.stretch:hover) .external { color: var(--text); }
+.rows .btn { position: relative; z-index: 1; }
+
+.ask-label { display: block; font-size: var(--fs-micro); font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-micro); text-transform: uppercase; color: var(--muted); }
+.ask-value { display: block; font-size: var(--fs-value); font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-tight); line-height: var(--lh-tight); color: var(--text); }
+
+.track {
+  display: flex; flex-direction: column; gap: var(--s-2);
+  padding: var(--pad-track); background: var(--well); border-radius: var(--r-inner);
+}
+.step {
+  display: grid; grid-template-columns: var(--lead-col) 1fr auto; align-items: center;
+  gap: var(--s-4); padding: var(--s-4) var(--pad-step);
+  border-radius: var(--r-step);
+  position: relative;
+}
+.step:hover { background: color-mix(in srgb, var(--panel) 60%, transparent); }
+.step.is-now { background: var(--raised); box-shadow: var(--e-1); }
+/* Lead marks sit at the start of their column, on the text inset. */
+.step-lead { display: grid; place-items: center start; }
+.step-lead > .icon { width: 18px; height: 18px; color: var(--neutral-text); }
+.step-body { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
+.step-title { font-size: var(--fs-body); font-weight: var(--fw-semibold); color: var(--text);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.step-sub { font-size: var(--fs-label); color: var(--muted); line-height: var(--lh-snug);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.step-time { font-size: var(--fs-label); font-weight: var(--fw-medium); color: var(--muted); white-space: nowrap; }
+.step .trail { display: flex; align-items: center; gap: var(--s-5); }
+.step .btn { position: relative; z-index: 1; }
+.step .stretch { color: inherit; }
+.step .stretch::after { content: ""; position: absolute; inset: 0; border-radius: inherit; }
+
+.step.deliverable { grid-template-columns: minmax(0, 1fr) var(--owner-col) var(--status-col) var(--action-col); }
+.deliverable .owner { font-size: var(--fs-label); color: var(--neutral-text); }
+.deliverable .act { display: flex; justify-content: flex-end; }
+.step.plain { grid-template-columns: minmax(0, 1fr) auto; }
+
+.facts { display: flex; flex-direction: column; gap: var(--s-5); margin: 0; }
+.facts dd { margin: 0; }
+
+.submit-panel { position: sticky; top: var(--s-8); }
+
+.option-divider {
+  display: flex; align-items: baseline; gap: var(--s-4);
+  padding: var(--s-4) var(--pad-step) var(--s-2);
+  font-size: var(--fs-micro); font-weight: var(--fw-medium); color: var(--muted);
+}
+
+.lanes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s-6); align-items: start; }
+.lanes .option-divider { padding-top: var(--s-3); }
+.lanes .option-divider b { color: var(--neutral-text); font-weight: var(--fw-semibold); font-size: var(--fs-label); }
+.note-pills { display: flex; flex-wrap: wrap; gap: var(--s-3); }
+.note-pill {
+  display: inline-flex; align-items: center; gap: var(--s-3);
+  padding: var(--s-2) var(--s-5); border-radius: var(--r-pill); background: var(--well);
+  font-size: var(--fs-label); font-weight: var(--fw-medium); color: var(--neutral-text);
+}
+.note-pill .icon { width: 14px; height: 14px; color: var(--muted); }
+
+.field { display: flex; flex-direction: column; gap: var(--s-3); }
+input, textarea {
+  width: 100%; min-height: var(--tap);
+  padding: var(--s-4) var(--inset-text);
+  border: 0; border-radius: var(--r-control) var(--r-control) 0 0;
+  background: var(--fill);
+  box-shadow: inset 0 -2px 0 var(--faint);
+  font-size: var(--fs-body);
+}
+textarea { min-height: var(--field-height); resize: vertical; line-height: var(--lh-body); }
+input:focus-visible, textarea:focus-visible { box-shadow: inset 0 -2px 0 var(--focus); }
+
+.task-note { display: grid; grid-template-columns: var(--lead-col) 1fr; gap: var(--s-4); align-items: start; }
+.task-note p { line-height: var(--lh-body); }
+.task-note .sheet-sub { margin-bottom: var(--s-2); }
+
+@media (max-width: 960px) {
+  .summary, .split, .lanes { grid-template-columns: minmax(0, 1fr); }
+  .submit-panel { position: static; }
+}
+
+@media (max-width: 720px) {
+
+  .step.deliverable { grid-template-columns: minmax(0, 1fr) auto; row-gap: var(--s-3); }
+  .deliverable .owner { grid-column: 1; grid-row: 2; }
+  .deliverable .consequence { grid-column: 2; grid-row: 1; justify-self: end; }
+  .deliverable .act { grid-column: 2; grid-row: 2; }
+  .deliverable .act:empty { display: none; }
+}
+
+@media (max-width: 600px) {
+  :root { --gutter: var(--s-6); --tap-compact: var(--tap); }
+
+  .bar { gap: var(--s-4); }
+  .bar .home { display: none; }
+  .crumbs li:not(:nth-last-child(2)) { display: none; }
+  .crumbs li + li::before { display: none; }
+  .crumbs li:nth-last-child(2)::before {
+    content: ""; display: block; width: 18px; height: 18px; background: var(--muted);
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 6l-6 6l6 6'/%3E%3C/svg%3E") center / contain no-repeat;
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 6l-6 6l6 6'/%3E%3C/svg%3E") center / contain no-repeat;
+  }
+  .crumbs a { color: var(--text); font-weight: var(--fw-medium); }
+
+  .page { padding-top: var(--s-4); }
+  :root { --pad-card: var(--s-5); }
+  .course-grid { grid-template-columns: minmax(0, 1fr); }
+
+  .step-title, .step-sub { white-space: normal; overflow-wrap: break-word; }
+
+  .rows > li:has(.trail .btn) { row-gap: var(--s-3); }
+  .rows > li .trail:has(.btn) { grid-column: 2 / -1; justify-content: space-between; }
+  .rows .cushion.in-row { width: auto; align-items: flex-start; text-align: left; }
+  .rows .cushion.in-row small { white-space: normal; }
+  .rows .trail .btn { flex: none; }
+}
+
+@media (prefers-contrast: more) {
+  :root { --muted: var(--c-ink-2); --faint: var(--c-ink-2); }
+  .card, .btn.secondary, .track, .step.is-now, .note-pill { outline: 1px solid var(--faint); outline-offset: -1px; }
+  input, textarea { box-shadow: inset 0 0 0 1px var(--faint), inset 0 -2px 0 var(--faint); }
+}
+@media (forced-colors: active) {
+  .card, .track, .step.is-now, .btn, .note-pill, input, textarea { border: 1px solid CanvasText; }
+  .btn.primary { border-color: ButtonText; }
+  .logo { forced-color-adjust: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
+</style>
+<style id="screen-styles"></style>
+<script id="screens" type="application/json">{"S1-my-courses":{"title":"S1 My courses","body":"\n\u003cheader class=\"bar\">\n  \u003ca class=\"home\" href=\"#S1-my-courses\">Courses\u003c/a>\n  \u003cnav aria-label=\"Breadcrumb\">\u003col class=\"crumbs\">\u003cli>\u003cspan aria-current=\"page\">My courses\u003c/span>\u003c/li>\u003c/ol>\u003c/nav>\n  \u003cspan class=\"avatar\" role=\"img\" aria-label=\"Your profile\">Y\u003c/span>\n\u003c/header>\n\u003cmain class=\"page\">\n\u003cdiv class=\"head\">\n    \u003ch1>My courses\u003c/h1>\n  \u003c/div>\n  \u003cdiv class=\"course-grid\">\n    \u003csection class=\"card course-card\">\n      \u003cdiv>\u003cspan class=\"ask-label\">ENGR101\u003c/span>\u003ch2 class=\"sheet-title\">Engineering Technology\u003c/h2>\u003c/div>\n      \u003cp class=\"course-group\">\u003csvg class=\"icon\" aria-hidden=\"true\">\u003cuse href=\"#users\"/>\u003c/svg>\u003ca class=\"stretch step-title\" href=\"#S2-group\" aria-label=\"Open ENGR101 Group 7\">Group 7\u003c/a>\u003cspan class=\"step-sub\">6 members\u003c/span>\u003csvg class=\"icon chevron\" aria-hidden=\"true\">\u003cuse href=\"#chevron\"/>\u003c/svg>\u003c/p>\n    \u003c/section>\n    \u003csection class=\"card course-card\">\n      \u003cdiv>\u003cspan class=\"ask-label\">SWEN225\u003c/span>\u003ch2 class=\"sheet-title\">Software Design\u003c/h2>\u003c/div>\n      \u003cp class=\"course-group\">\u003csvg class=\"icon\" aria-hidden=\"true\">\u003cuse href=\"#users\"/>\u003c/svg>\u003ca class=\"stretch step-title\" href=\"#\" aria-label=\"Open SWEN225 Team 4\">Team 4\u003c/a>\u003cspan class=\"step-sub\">4 members\u003c/span>\u003csvg class=\"icon chevron\" aria-hidden=\"true\">\u003cuse href=\"#chevron\"/>\u003c/svg>\u003c/p>\n    \u003c/section>\n  \u003c/div>\n\u003c/main>\n","styles":""},"S2-group":{"title":"S2 Group page","body":"\n\u003cheader class=\"bar\">\n  \u003ca class=\"home\" href=\"#S1-my-courses\">Courses\u003c/a>\n  \u003cnav aria-label=\"Breadcrumb\">\u003col class=\"crumbs\">\u003cli>\u003ca href=\"#S1-my-courses\">My courses\u003c/a>\u003c/li>\u003cli>\u003cspan aria-current=\"page\">ENGR101 Group 7\u003c/span>\u003c/li>\u003c/ol>\u003c/nav>\n  \u003cspan class=\"avatar\" role=\"img\" aria-label=\"Your profile\">Y\u003c/span>\n\u003c/header>\n\u003cmain class=\"page\">\n\u003cdiv class=\"head\">\n    \u003ch1>Group 7\u003c/h1>\n    \u003cp class=\"lede\">ENGR101 Engineering Technology · 6 members\u003c/p>\n  \u003c/div>\n\n  \u003cdiv class=\"summary\">\n    \u003csection class=\"card\">\n      \u003ch2>Members\u003c/h2>\n      \u003cul class=\"rows\">\n        \u003cli>\u003cspan class=\"avatar\" aria-hidden=\"true\">M1\u003c/span>\u003cspan class=\"step-body\">\u003cspan class=\"step-title\">Member 1\u003c/span>\u003cspan class=\"step-sub\">member1@myvuw.ac.nz\u003c/span>\u003c/span>\u003cspan class=\"trail\">\u003cspan class=\"cushion in-row\">\u003cb>Today\u003c/b>\u003csmall>last active\u003c/small>\u003c/span>\u003ca class=\"btn secondary compact\" href=\"#\" aria-label=\"Email Member 1\">Email\u003c/a>\u003c/span>\u003c/li>\n        \u003cli>\u003cspan class=\"avatar\" aria-hidden=\"true\">M2\u003c/span>\u003cspan class=\"step-body\">\u003cspan class=\"step-title\">Member 2\u003c/span>\u003cspan class=\"step-sub\">member2@myvuw.ac.nz\u003c/span>\u003c/span>\u003cspan class=\"trail\">\u003cspan class=\"cushion in-row\">\u003cb>Yesterday\u003c/b>\u003csmall>last active\u003c/small>\u003c/span>\u003ca class=\"btn secondary compact\" href=\"#\" aria-label=\"Email Member 2\">Email\u003c/a>\u003c/span>\u003c/li>\n        \u003cli>\u003cspan class=\"avatar\" aria-hidden=\"true\">M3\u003c/span>\u003cspan class=\"step-body\">\u003cspan class=\"step-title\">Member 3\u003c/span>\u003cspan class=\"step-sub\">member3@myvuw.ac.nz\u003c/span>\u003c/span>\u003cspan class=\"trail\">\u003cspan class=\"cushion in-row\">\u003cb>2 days ago\u003c/b>\u003csmall>last active\u003c/small>\u003c/span>\u003ca class=\"btn secondary compact\" href=\"#\" aria-label=\"Email Member 3\">Email\u003c/a>\u003c/span>\u003c/li>\n        \u003cli>\u003cspan class=\"avatar\" aria-hidden=\"true\">M4\u003c/span>\u003cspan class=\"step-body\">\u003cspan class=\"step-title\">Member 4\u003c/span>\u003cspan class=\"step-sub\">member4@myvuw.ac.nz\u003c/span>\u003c/span>\u003cspan class=\"trail\">\u003cspan class=\"cushion in-row\" data-status=\"missing\">\u003cb>14 days\u003c/b>\u003csmall>no commits or edits\u003c/small>\u003c/span>\u003ca class=\"btn secondary compact\" href=\"#S6-email-member\" aria-label=\"Email Member 4\">Email\u003c/a>\u003c/span>\u003c/li>\n        \u003cli>\u003cspan class=\"avatar\" aria-hidden=\"true\">M5\u003c/span>\u003cspan class=\"step-body\">\u003cspan class=\"step-title\">Member 5\u003c/span>\u003cspan class=\"step-sub\">member5@myvuw.ac.nz\u003c/span>\u003c/span>\u003cspan class=\"trail\">\u003cspan class=\"cushion in-row\">\u003cb>Today\u003c/b>\u003csmall>last active\u003c/small>\u003c/span>\u003ca class=\"btn secondary compact\" href=\"#\" aria-label=\"Email Member 5\">Email\u003c/a>\u003c/span>\u003c/li>\n        \u003cli>\u003cspan class=\"avatar\" aria-hidden=\"true\">Y\u003c/span>\u003cspan class=\"step-body\">\u003cspan class=\"step-title\">You\u003c/span>\u003cspan class=\"step-sub\">you@myvuw.ac.nz\u003c/span>\u003c/span>\u003c/li>\n      \u003c/ul>\n    \u003c/section>\n\n    \u003cdiv class=\"column\">\n      \u003csection class=\"card\">\n        \u003ch2>Project resources\u003c/h2>\n        \u003cul class=\"rows\">\n          \u003cli>\u003cspan class=\"step-lead\">\u003csvg class=\"logo\" aria-hidden=\"true\">\u003cuse href=\"#logo-gitlab\"/>\u003c/svg>\u003c/span>\u003cspan class=\"step-body\">\u003ca class=\"stretch step-title\" href=\"#\">GitLab repo\u003c/a>\u003cspan class=\"step-sub\">engr101/group-7\u003c/span>\u003c/span>\u003csvg class=\"icon external\" aria-hidden=\"true\">\u003cuse href=\"#external\"/>\u003c/svg>\u003c/li>\n          \u003cli>\u003cspan class=\"step-lead\">\u003csvg class=\"logo\" aria-hidden=\"true\">\u003cuse href=\"#logo-drive\"/>\u003c/svg>\u003c/span>\u003cspan class=\"step-body\">\u003ca class=\"stretch step-title\" href=\"#\">Google Drive\u003c/a>\u003cspan class=\"step-sub\">Group 7 shared folder\u003c/span>\u003c/span>\u003csvg class=\"icon external\" aria-hidden=\"true\">\u003cuse href=\"#external\"/>\u003c/svg>\u003c/li>\n          \u003cli>\u003cspan class=\"step-lead\">\u003csvg class=\"logo\" aria-hidden=\"true\">\u003cuse href=\"#logo-discord\"/>\u003c/svg>\u003c/span>\u003cspan class=\"step-body\">\u003ca class=\"stretch step-title\" href=\"#\">Group chat\u003c/a>\u003cspan class=\"step-sub\">Discord\u003c/span>\u003c/span>\u003csvg class=\"icon external\" aria-hidden=\"true\">\u003cuse href=\"#external\"/>\u003c/svg>\u003c/li>\n        \u003c/ul>\n      \u003c/section>\n      \u003csection class=\"card\">\n        \u003cdiv class=\"sheet-head\">\n          \u003cdiv>\u003ch2>Submission\u003c/h2>\u003cspan class=\"sheet-sub\">Due today, 11:59 pm\u003c/span>\u003c/div>\n          \u003cspan class=\"cushion\" data-status=\"missing\">\u003cb>1 of 3\u003c/b>\u003csmall>items ready\u003c/small>\u003c/span>\n        \u003c/div>\n        \u003cdiv class=\"sheet-actions single\">\u003ca class=\"btn secondary\" href=\"#S4-submit\">Check submission\u003c/a>\u003c/div>\n      \u003c/section>\n    \u003c/div>\n  \u003c/div>\n\n  \u003csection class=\"board\">\n    \u003ch2 class=\"section-title\">Tasks\u003c/h2>\n    \u003cdiv class=\"lanes\">\n        \u003cdiv class=\"track\">\n          \u003cdiv class=\"option-divider\">\u003cb>To do\u003c/b>3\u003c/div>\n          \u003cdiv class=\"step\">\u003cspan class=\"step-lead\">\u003cspan class=\"avatar sm empty\" aria-hidden=\"true\">\u003c/span>\u003c/span>\u003cspan class=\"step-body\">\u003ca class=\"stretch step-title\" href=\"#S8-task\">Task A\u003c/a>\u003cspan class=\"step-sub\">Unassigned\u003c/span>\u003c/span>\u003cspan class=\"trail\">\u003ca class=\"btn secondary compact\" href=\"#S3-task-assigned\" aria-label=\"Assign Task A to me\">Assign to me\u003c/a>\u003c/span>\u003c/div>\n          \u003cdiv class=\"step\">\u003cspan class=\"step-lead\">\u003cspan class=\"avatar sm empty\" aria-hidden=\"true\">\u003c/span>\u003c/span>\u003cspan class=\"step-body\">\u003ca class=\"stretch step-title\" href=\"#S8-task\">Task B\u003c/a>\u003cspan class=\"step-sub\">Unassigned\u003c/span>\u003c/span>\u003cspan class=\"trail\">\u003ca class=\"btn secondary compact\" href=\"#\" aria-label=\"Assign Task B to me\">Assign to me\u003c/a>\u003c/span>\u003c/div>\n          \u003cdiv class=\"step\">\u003cspan class=\"step-lead\">\u003cspan class=\"avatar sm\" aria-hidden=\"true\">M3\u003c/span>\u003c/span>\u003cspan class=\"step-body\">\u003ca class=\"stretch step-title\" href=\"#S8-task\">Task C\u003c/a>\u003cspan class=\"step-sub\">Member 3\u003c/span>\u003c/span>\u003c/div>\n        \u003c/div>\n        \u003cdiv class=\"track\">\n          \u003cdiv class=\"option-divider\">\u003cb>In progress\u003c/b>1\u003c/div>\n          \u003cdiv class=\"step\">\u003cspan class=\"step-lead\">\u003cspan class=\"avatar sm\" aria-hidden=\"true\">M2\u003c/span>\u003c/span>\u003cspan class=\"step-body\">\u003ca class=\"stretch step-title\" href=\"#S8-task\">Task D\u003c/a>\u003cspan class=\"step-sub\">Member 2\u003c/span>\u003c/span>\u003c/div>\n        \u003c/div>\n        \u003cdiv class=\"track\">\n          \u003cdiv class=\"option-divider\">\u003cb>Done\u003c/b>1\u003c/div>\n          \u003cdiv class=\"step\">\u003cspan class=\"step-lead\">\u003cspan class=\"avatar sm\" aria-hidden=\"true\">M1\u003c/span>\u003c/span>\u003cspan class=\"step-body\">\u003ca class=\"stretch step-title\" href=\"#S8-task\">Task E\u003c/a>\u003cspan class=\"step-sub\">Member 1\u003c/span>\u003c/span>\u003c/div>\n        \u003c/div>\n    \u003c/div>\n  \u003c/section>\n\u003c/main>\n","styles":""},"S3-task-assigned":{"title":"S3 Task assigned","body":"\n\u003cheader class=\"bar\">\n  \u003ca class=\"home\" href=\"#S1-my-courses\">Courses\u003c/a>\n  \u003cnav aria-label=\"Breadcrumb\">\u003col class=\"crumbs\">\u003cli>\u003ca href=\"#S1-my-courses\">My courses\u003c/a>\u003c/li>\u003cli>\u003cspan aria-current=\"page\">ENGR101 Group 7\u003c/span>\u003c/li>\u003c/ol>\u003c/nav>\n  \u003cspan class=\"avatar\" role=\"img\" aria-label=\"Your profile\">Y\u003c/span>\n\u003c/header>\n\u003cmain class=\"page\">\n\u003cdiv class=\"head\">\n    \u003ch1>Group 7\u003c/h1>\n    \u003cp class=\"lede\">ENGR101 Engineering Technology · 6 members\u003c/p>\n  \u003c/div>\n\n  \u003cdiv class=\"summary\">\n    \u003csection class=\"card\">\n      \u003ch2>Members\u003c/h2>\n      \u003cul class=\"rows\">\n        \u003cli>\u003cspan class=\"avatar\" aria-hidden=\"true\">M1\u003c/span>\u003cspan class=\"step-body\">\u003cspan class=\"step-title\">Member 1\u003c/span>\u003cspan class=\"step-sub\">member1@myvuw.ac.nz\u003c/span>\u003c/span>\u003cspan class=\"trail\">\u003cspan class=\"cushion in-row\">\u003cb>Today\u003c/b>\u003csmall>last active\u003c/small>\u003c/span>\u003ca class=\"btn secondary compact\" href=\"#\" aria-label=\"Email Member 1\">Email\u003c/a>\u003c/span>\u003c/li>\n        \u003cli>\u003cspan class=\"avatar\" aria-hidden=\"true\">M2\u003c/span>\u003cspan class=\"step-body\">\u003cspan class=\"step-title\">Member 2\u003c/span>\u003cspan class=\"step-sub\">member2@myvuw.ac.nz\u003c/span>\u003c/span>\u003cspan class=\"trail\">\u003cspan class=\"cushion in-row\">\u003cb>Yesterday\u003c/b>\u003csmall>last active\u003c/small>\u003c/span>\u003ca class=\"btn secondary compact\" href=\"#\" aria-label=\"Email Member 2\">Email\u003c/a>\u003c/span>\u003c/li>\n        \u003cli>\u003cspan class=\"avatar\" aria-hidden=\"true\">M3\u003c/span>\u003cspan class=\"step-body\">\u003cspan class=\"step-title\">Member 3\u003c/span>\u003cspan class=\"step-sub\">member3@myvuw.ac.nz\u003c/span>\u003c/span>\u003cspan class=\"trail\">\u003cspan class=\"cushion in-row\">\u003cb>2 days ago\u003c/b>\u003csmall>last active\u003c/small>\u003c/span>\u003ca class=\"btn secondary compact\" href=\"#\" aria-label=\"Email Member 3\">Email\u003c/a>\u003c/span>\u003c/li>\n        \u003cli>\u003cspan class=\"avatar\" aria-hidden=\"true\">M4\u003c/span>\u003cspan class=\"step-body\">\u003cspan class=\"step-title\">Member 4\u003c/span>\u003cspan class=\"step-sub\">member4@myvuw.ac.nz\u003c/span>\u003c/span>\u003cspan class=\"trail\">\u003cspan class=\"cushion in-row\" data-status=\"missing\">\u003cb>14 days\u003c/b>\u003csmall>no commits or edits\u003c/small>\u003c/span>\u003ca class=\"btn secondary compact\" href=\"#S6-email-member\" aria-label=\"Email Member 4\">Email\u003c/a>\u003c/span>\u003c/li>\n        \u003cli>\u003cspan class=\"avatar\" aria-hidden=\"true\">M5\u003c/span>\u003cspan class=\"step-body\">\u003cspan class=\"step-title\">Member 5\u003c/span>\u003cspan class=\"step-sub\">member5@myvuw.ac.nz\u003c/span>\u003c/span>\u003cspan class=\"trail\">\u003cspan class=\"cushion in-row\">\u003cb>Today\u003c/b>\u003csmall>last active\u003c/small>\u003c/span>\u003ca class=\"btn secondary compact\" href=\"#\" aria-label=\"Email Member 5\">Email\u003c/a>\u003c/span>\u003c/li>\n        \u003cli>\u003cspan class=\"avatar\" aria-hidden=\"true\">Y\u003c/span>\u003cspan class=\"step-body\">\u003cspan class=\"step-title\">You\u003c/span>\u003cspan class=\"step-sub\">you@myvuw.ac.nz\u003c/span>\u003c/span>\u003c/li>\n      \u003c/ul>\n    \u003c/section>\n\n    \u003cdiv class=\"column\">\n      \u003csection class=\"card\">\n        \u003ch2>Project resources\u003c/h2>\n        \u003cul class=\"rows\">\n          \u003cli>\u003cspan class=\"step-lead\">\u003csvg class=\"logo\" aria-hidden=\"true\">\u003cuse href=\"#logo-gitlab\"/>\u003c/svg>\u003c/span>\u003cspan class=\"step-body\">\u003ca class=\"stretch step-title\" href=\"#\">GitLab repo\u003c/a>\u003cspan class=\"step-sub\">engr101/group-7\u003c/span>\u003c/span>\u003csvg class=\"icon external\" aria-hidden=\"true\">\u003cuse href=\"#external\"/>\u003c/svg>\u003c/li>\n          \u003cli>\u003cspan class=\"step-lead\">\u003csvg class=\"logo\" aria-hidden=\"true\">\u003cuse href=\"#logo-drive\"/>\u003c/svg>\u003c/span>\u003cspan class=\"step-body\">\u003ca class=\"stretch step-title\" href=\"#\">Google Drive\u003c/a>\u003cspan class=\"step-sub\">Group 7 shared folder\u003c/span>\u003c/span>\u003csvg class=\"icon external\" aria-hidden=\"true\">\u003cuse href=\"#external\"/>\u003c/svg>\u003c/li>\n          \u003cli>\u003cspan class=\"step-lead\">\u003csvg class=\"logo\" aria-hidden=\"true\">\u003cuse href=\"#logo-discord\"/>\u003c/svg>\u003c/span>\u003cspan class=\"step-body\">\u003ca class=\"stretch step-title\" href=\"#\">Group chat\u003c/a>\u003cspan class=\"step-sub\">Discord\u003c/span>\u003c/span>\u003csvg class=\"icon external\" aria-hidden=\"true\">\u003cuse href=\"#external\"/>\u003c/svg>\u003c/li>\n        \u003c/ul>\n      \u003c/section>\n      \u003csection class=\"card\">\n        \u003cdiv class=\"sheet-head\">\n          \u003cdiv>\u003ch2>Submission\u003c/h2>\u003cspan class=\"sheet-sub\">Due today, 11:59 pm\u003c/span>\u003c/div>\n          \u003cspan class=\"cushion\" data-status=\"missing\">\u003cb>1 of 3\u003c/b>\u003csmall>items ready\u003c/small>\u003c/span>\n        \u003c/div>\n        \u003cdiv class=\"sheet-actions single\">\u003ca class=\"btn secondary\" href=\"#S4-submit\">Check submission\u003c/a>\u003c/div>\n      \u003c/section>\n    \u003c/div>\n  \u003c/div>\n\n  \u003csection class=\"board\">\n    \u003ch2 class=\"section-title\">Tasks\u003c/h2>\n    \u003cdiv class=\"lanes\">\n        \u003cdiv class=\"track\">\n          \u003cdiv class=\"option-divider\">\u003cb>To do\u003c/b>3\u003c/div>\n          \u003cdiv class=\"step is-now\">\u003cspan class=\"step-lead\">\u003cspan class=\"avatar sm\" aria-hidden=\"true\">Y\u003c/span>\u003c/span>\u003cspan class=\"step-body\">\u003ca class=\"stretch step-title\" href=\"#S8-task\">Task A\u003c/a>\u003cspan class=\"step-sub\">You\u003c/span>\u003c/span>\u003cspan class=\"trail\">\u003ca class=\"btn secondary compact\" href=\"#S2-group\" aria-label=\"Unassign Task A\">Unassign\u003c/a>\u003c/span>\u003c/div>\n          \u003cdiv class=\"step\">\u003cspan class=\"step-lead\">\u003cspan class=\"avatar sm empty\" aria-hidden=\"true\">\u003c/span>\u003c/span>\u003cspan class=\"step-body\">\u003ca class=\"stretch step-title\" href=\"#S8-task\">Task B\u003c/a>\u003cspan class=\"step-sub\">Unassigned\u003c/span>\u003c/span>\u003cspan class=\"trail\">\u003ca class=\"btn secondary compact\" href=\"#\" aria-label=\"Assign Task B to me\">Assign to me\u003c/a>\u003c/span>\u003c/div>\n          \u003cdiv class=\"step\">\u003cspan class=\"step-lead\">\u003cspan class=\"avatar sm\" aria-hidden=\"true\">M3\u003c/span>\u003c/span>\u003cspan class=\"step-body\">\u003ca class=\"stretch step-title\" href=\"#S8-task\">Task C\u003c/a>\u003cspan class=\"step-sub\">Member 3\u003c/span>\u003c/span>\u003c/div>\n        \u003c/div>\n        \u003cdiv class=\"track\">\n          \u003cdiv class=\"option-divider\">\u003cb>In progress\u003c/b>1\u003c/div>\n          \u003cdiv class=\"step\">\u003cspan class=\"step-lead\">\u003cspan class=\"avatar sm\" aria-hidden=\"true\">M2\u003c/span>\u003c/span>\u003cspan class=\"step-body\">\u003ca class=\"stretch step-title\" href=\"#S8-task\">Task D\u003c/a>\u003cspan class=\"step-sub\">Member 2\u003c/span>\u003c/span>\u003c/div>\n        \u003c/div>\n        \u003cdiv class=\"track\">\n          \u003cdiv class=\"option-divider\">\u003cb>Done\u003c/b>1\u003c/div>\n          \u003cdiv class=\"step\">\u003cspan class=\"step-lead\">\u003cspan class=\"avatar sm\" aria-hidden=\"true\">M1\u003c/span>\u003c/span>\u003cspan class=\"step-body\">\u003ca class=\"stretch step-title\" href=\"#S8-task\">Task E\u003c/a>\u003cspan class=\"step-sub\">Member 1\u003c/span>\u003c/span>\u003c/div>\n        \u003c/div>\n    \u003c/div>\n  \u003c/section>\n\u003c/main>\n","styles":""},"S4-submit":{"title":"S4 Ready to submit?","body":"\n\u003cheader class=\"bar\">\n  \u003ca class=\"home\" href=\"#S1-my-courses\">Courses\u003c/a>\n  \u003cnav aria-label=\"Breadcrumb\">\u003col class=\"crumbs\">\u003cli>\u003ca href=\"#S1-my-courses\">My courses\u003c/a>\u003c/li>\u003cli>\u003ca href=\"#S2-group\">ENGR101 Group 7\u003c/a>\u003c/li>\u003cli>\u003cspan aria-current=\"page\">Ready to submit?\u003c/span>\u003c/li>\u003c/ol>\u003c/nav>\n  \u003cspan class=\"avatar\" role=\"img\" aria-label=\"Your profile\">Y\u003c/span>\n\u003c/header>\n\u003cmain class=\"page wide-page\">\n\u003cdiv class=\"head\">\n    \u003ch1>Ready to submit?\u003c/h1>\n    \u003cp class=\"lede\">ENGR101 Group 7\u003c/p>\n  \u003c/div>\n  \u003cdiv class=\"split\">\n    \u003csection class=\"card\">\n      \u003cdiv class=\"sheet-head\">\n        \u003cdiv>\u003ch2 class=\"sheet-title\">Deliverables\u003c/h2>\u003cspan class=\"sheet-sub\">3 items\u003c/span>\u003c/div>\n      \u003c/div>\n      \u003cdiv class=\"track\">\n        \u003cdiv class=\"step deliverable\" data-status=\"ready\">\u003cspan class=\"step-body\">\u003cspan class=\"step-title\">Code\u003c/span>\u003cspan class=\"step-sub\">GitLab, engr101/group-7\u003c/span>\u003c/span>\u003cspan class=\"owner\">Member 1\u003c/span>\u003cspan class=\"consequence\">Ready\u003c/span>\u003cspan class=\"act\">\u003c/span>\u003c/div>\n        \u003cdiv class=\"step deliverable\" data-status=\"unfinished\">\u003cspan class=\"step-body\">\u003cspan class=\"step-title\">Report\u003c/span>\u003cspan class=\"step-sub\">Google Drive, Group 7 shared folder\u003c/span>\u003c/span>\u003cspan class=\"owner\">Member 3\u003c/span>\u003cspan class=\"consequence\">Unfinished\u003c/span>\u003cspan class=\"act\">\u003ca class=\"btn secondary compact\" href=\"#\" aria-label=\"Email Member 3\">Email\u003c/a>\u003c/span>\u003c/div>\n        \u003cdiv class=\"step deliverable\" data-status=\"missing\">\u003cspan class=\"step-body\">\u003cspan class=\"step-title\">Demo video\u003c/span>\u003cspan class=\"step-sub\">No link yet\u003c/span>\u003c/span>\u003cspan class=\"owner\">You\u003c/span>\u003cspan class=\"consequence\">Missing\u003c/span>\u003cspan class=\"act\">\u003ca class=\"btn secondary compact\" href=\"#\" aria-label=\"Add demo video link\">Add link\u003c/a>\u003c/span>\u003c/div>\n      \u003c/div>\n    \u003c/section>\n\n    \u003caside class=\"card submit-panel\" aria-label=\"Submit\">\n      \u003cdl class=\"facts\">\n        \u003cdiv>\u003cdt class=\"ask-label\">Due\u003c/dt>\u003cdd class=\"ask-value\">Today, 11:59 pm\u003c/dd>\u003c/div>\n        \u003cdiv>\u003cdt class=\"ask-label\">Ready\u003c/dt>\u003cdd class=\"ask-value\">1 of 3 items\u003c/dd>\u003c/div>\n      \u003c/dl>\n      \u003cp class=\"watch\">\u003csvg class=\"icon\" aria-hidden=\"true\">\u003cuse href=\"#alert\"/>\u003c/svg>\u003cspan>2 items are not ready. Submitting now sends them as they are.\u003c/span>\u003c/p>\n      \u003cdiv class=\"sheet-actions single\">\u003ca class=\"btn primary\" href=\"#S5-submitted\">Submit\u003c/a>\u003c/div>\n      \u003cp class=\"sheet-sub\">Every member is emailed the list of what was submitted.\u003c/p>\n    \u003c/aside>\n  \u003c/div>\n\u003c/main>\n","styles":""},"S6-email-member":{"title":"S6 Email a member","body":"\n\u003cheader class=\"bar\">\n  \u003ca class=\"home\" href=\"#S1-my-courses\">Courses\u003c/a>\n  \u003cnav aria-label=\"Breadcrumb\">\u003col class=\"crumbs\">\u003cli>\u003ca href=\"#S1-my-courses\">My courses\u003c/a>\u003c/li>\u003cli>\u003ca href=\"#S2-group\">ENGR101 Group 7\u003c/a>\u003c/li>\u003cli>\u003cspan aria-current=\"page\">Email Member 4\u003c/span>\u003c/li>\u003c/ol>\u003c/nav>\n  \u003cspan class=\"avatar\" role=\"img\" aria-label=\"Your profile\">Y\u003c/span>\n\u003c/header>\n\u003cmain class=\"page sheet-page\">\n\u003cdiv class=\"head\">\n    \u003ch1>Email Member 4\u003c/h1>\n  \u003c/div>\n  \u003csection class=\"card\">\n    \u003cul class=\"rows\">\n      \u003cli>\u003cspan class=\"avatar\" aria-hidden=\"true\">M4\u003c/span>\u003cspan class=\"step-body\">\u003cspan class=\"ask-label\">To\u003c/span>\u003cspan class=\"step-title\">Member 4\u003c/span>\u003cspan class=\"step-sub\">member4@myvuw.ac.nz\u003c/span>\u003c/span>\u003c/li>\n    \u003c/ul>\n    \u003cdiv class=\"field\">\u003clabel class=\"ask-label\" for=\"subject\">Subject\u003c/label>\u003cinput id=\"subject\" value=\"ENGR101 Group 7\">\u003c/div>\n    \u003cdiv class=\"field\">\u003clabel class=\"ask-label\" for=\"message\">Message\u003c/label>\u003ctextarea id=\"message\">\u003c/textarea>\u003c/div>\n    \u003cdiv class=\"sheet-actions\">\u003ca class=\"btn secondary\" href=\"#S2-group\">Cancel\u003c/a>\u003ca class=\"btn primary\" href=\"#S7-email-sent\">Send\u003c/a>\u003c/div>\n  \u003c/section>\n\u003c/main>\n","styles":""},"S8-task":{"title":"S8 Task","body":"\n\u003cheader class=\"bar\">\n  \u003ca class=\"home\" href=\"#S1-my-courses\">Courses\u003c/a>\n  \u003cnav aria-label=\"Breadcrumb\">\u003col class=\"crumbs\">\u003cli>\u003ca href=\"#S1-my-courses\">My courses\u003c/a>\u003c/li>\u003cli>\u003ca href=\"#S2-group\">ENGR101 Group 7\u003c/a>\u003c/li>\u003cli>\u003cspan aria-current=\"page\">Task D\u003c/span>\u003c/li>\u003c/ol>\u003c/nav>\n  \u003cspan class=\"avatar\" role=\"img\" aria-label=\"Your profile\">Y\u003c/span>\n\u003c/header>\n\u003cmain class=\"page sheet-page\">\n\u003cdiv class=\"head\">\n    \u003ch1>Task D\u003c/h1>\n    \u003cp class=\"lede\">\u003cspan class=\"avatar sm\" aria-hidden=\"true\">M2\u003c/span>Member 2 · In progress\u003c/p>\n  \u003c/div>\n  \u003csection class=\"card\">\n    \u003ch2>Links\u003c/h2>\n    \u003cul class=\"rows\">\n          \u003cli>\u003cspan class=\"step-lead\">\u003csvg class=\"logo\" aria-hidden=\"true\">\u003cuse href=\"#logo-gitlab\"/>\u003c/svg>\u003c/span>\u003cspan class=\"step-body\">\u003ca class=\"stretch step-title\" href=\"#\">GitLab issue\u003c/a>\u003cspan class=\"step-sub\">engr101/group-7\u003c/span>\u003c/span>\u003csvg class=\"icon external\" aria-hidden=\"true\">\u003cuse href=\"#external\"/>\u003c/svg>\u003c/li>\n    \u003c/ul>\n  \u003c/section>\n  \u003csection class=\"card\">\n    \u003ch2>Notes\u003c/h2>\n    \u003cdiv class=\"task-note\">\n      \u003cspan class=\"avatar\" aria-hidden=\"true\">M2\u003c/span>\n      \u003cdiv>\n        \u003cspan class=\"sheet-sub\">Member 2 · yesterday\u003c/span>\n        \u003cp>blah blah blah blah\u003c/p>\n      \u003c/div>\n    \u003c/div>\n  \u003c/section>\n  \u003cdiv class=\"sheet-actions single\">\u003ca class=\"btn primary\" href=\"#S9-ask-help\">Ask a tutor for help\u003c/a>\u003c/div>\n\u003c/main>\n","styles":""},"S5-submitted":{"title":"S5 Submitted","body":"\n\u003cheader class=\"bar\">\n  \u003ca class=\"home\" href=\"#S1-my-courses\">Courses\u003c/a>\n  \u003cnav aria-label=\"Breadcrumb\">\u003col class=\"crumbs\">\u003cli>\u003ca href=\"#S1-my-courses\">My courses\u003c/a>\u003c/li>\u003cli>\u003ca href=\"#S2-group\">ENGR101 Group 7\u003c/a>\u003c/li>\u003cli>\u003cspan aria-current=\"page\">Submitted\u003c/span>\u003c/li>\u003c/ol>\u003c/nav>\n  \u003cspan class=\"avatar\" role=\"img\" aria-label=\"Your profile\">Y\u003c/span>\n\u003c/header>\n\u003cmain class=\"page sheet-page\">\n\u003csection class=\"card\">\n    \u003cdiv class=\"result-head\">\n      \u003cspan class=\"arrived-mark\" data-status=\"ready\">\u003csvg class=\"icon\" aria-hidden=\"true\">\u003cuse href=\"#check\"/>\u003c/svg>\u003c/span>\n      \u003cdiv>\u003ch1 class=\"sheet-title\">Submitted\u003c/h1>\u003cspan class=\"sheet-sub\">This list has been emailed to every member.\u003c/span>\u003c/div>\n    \u003c/div>\n    \u003cdiv class=\"track\">\n      \u003cdiv class=\"step plain\">\u003cspan class=\"step-body\">\u003cspan class=\"step-title\">Code\u003c/span>\u003c/span>\u003cspan class=\"consequence\">Received\u003c/span>\u003c/div>\n      \u003cdiv class=\"step plain\">\u003cspan class=\"step-body\">\u003cspan class=\"step-title\">Report\u003c/span>\u003c/span>\u003cspan class=\"consequence\">Received\u003c/span>\u003c/div>\n      \u003cdiv class=\"step plain\">\u003cspan class=\"step-body\">\u003cspan class=\"step-title\">Demo video\u003c/span>\u003c/span>\u003cspan class=\"consequence\">Received\u003c/span>\u003c/div>\n    \u003c/div>\n    \u003cdiv class=\"sheet-actions single\">\u003ca class=\"btn primary\" href=\"#S2-group\">Back to group\u003c/a>\u003c/div>\n  \u003c/section>\n\u003c/main>\n","styles":""},"S7-email-sent":{"title":"S7 Email sent","body":"\n\u003cheader class=\"bar\">\n  \u003ca class=\"home\" href=\"#S1-my-courses\">Courses\u003c/a>\n  \u003cnav aria-label=\"Breadcrumb\">\u003col class=\"crumbs\">\u003cli>\u003ca href=\"#S1-my-courses\">My courses\u003c/a>\u003c/li>\u003cli>\u003ca href=\"#S2-group\">ENGR101 Group 7\u003c/a>\u003c/li>\u003cli>\u003cspan aria-current=\"page\">Email sent\u003c/span>\u003c/li>\u003c/ol>\u003c/nav>\n  \u003cspan class=\"avatar\" role=\"img\" aria-label=\"Your profile\">Y\u003c/span>\n\u003c/header>\n\u003cmain class=\"page sheet-page\">\n\u003csection class=\"card\">\n    \u003cdiv class=\"result-head\">\n      \u003cspan class=\"arrived-mark\">\u003csvg class=\"icon\" aria-hidden=\"true\">\u003cuse href=\"#mail\"/>\u003c/svg>\u003c/span>\n      \u003cdiv>\u003ch1 class=\"sheet-title\">Email sent\u003c/h1>\u003cspan class=\"sheet-sub\">Sent to Member 4 at member4@myvuw.ac.nz.\u003c/span>\u003c/div>\n    \u003c/div>\n    \u003cdiv class=\"sheet-actions single\">\u003ca class=\"btn primary\" href=\"#S2-group\">Back to group\u003c/a>\u003c/div>\n  \u003c/section>\n\u003c/main>\n","styles":""},"S9-ask-help":{"title":"S9 Ask a tutor for help","body":"\n\u003cheader class=\"bar\">\n  \u003ca class=\"home\" href=\"#S1-my-courses\">Courses\u003c/a>\n  \u003cnav aria-label=\"Breadcrumb\">\u003col class=\"crumbs\">\u003cli>\u003ca href=\"#S1-my-courses\">My courses\u003c/a>\u003c/li>\u003cli>\u003ca href=\"#S2-group\">ENGR101 Group 7\u003c/a>\u003c/li>\u003cli>\u003ca href=\"#S8-task\">Task D\u003c/a>\u003c/li>\u003cli>\u003cspan aria-current=\"page\">Ask a tutor for help\u003c/span>\u003c/li>\u003c/ol>\u003c/nav>\n  \u003cspan class=\"avatar\" role=\"img\" aria-label=\"Your profile\">Y\u003c/span>\n\u003c/header>\n\u003cmain class=\"page sheet-page\">\n\u003cdiv class=\"head\">\n    \u003ch1>Ask a tutor for help\u003c/h1>\n  \u003c/div>\n  \u003csection class=\"card\">\n    \u003cdiv class=\"field\">\u003cspan class=\"ask-label\">To\u003c/span>\u003cspan class=\"step-title\">ENGR101 tutors\u003c/span>\u003c/div>\n    \u003cdiv class=\"field\">\n      \u003cspan class=\"ask-label\">Attached\u003c/span>\n      \u003cul class=\"note-pills\">\n        \u003cli class=\"note-pill\">\u003csvg class=\"icon\" aria-hidden=\"true\">\u003cuse href=\"#file\"/>\u003c/svg>Task D\u003c/li>\n        \u003cli class=\"note-pill\">\u003csvg class=\"logo\" aria-hidden=\"true\">\u003cuse href=\"#logo-gitlab\"/>\u003c/svg>GitLab issue\u003c/li>\n        \u003cli class=\"note-pill\">\u003csvg class=\"icon\" aria-hidden=\"true\">\u003cuse href=\"#chat\"/>\u003c/svg>Notes\u003c/li>\n      \u003c/ul>\n    \u003c/div>\n    \u003cdiv class=\"field\">\u003clabel class=\"ask-label\" for=\"message\">Message\u003c/label>\u003ctextarea id=\"message\">\u003c/textarea>\u003c/div>\n    \u003cdiv class=\"sheet-actions\">\u003ca class=\"btn secondary\" href=\"#S8-task\">Cancel\u003c/a>\u003ca class=\"btn primary\" href=\"#S10-help-sent\">Send\u003c/a>\u003c/div>\n  \u003c/section>\n\u003c/main>\n","styles":""},"S10-help-sent":{"title":"S10 Request sent","body":"\n\u003cheader class=\"bar\">\n  \u003ca class=\"home\" href=\"#S1-my-courses\">Courses\u003c/a>\n  \u003cnav aria-label=\"Breadcrumb\">\u003col class=\"crumbs\">\u003cli>\u003ca href=\"#S1-my-courses\">My courses\u003c/a>\u003c/li>\u003cli>\u003ca href=\"#S2-group\">ENGR101 Group 7\u003c/a>\u003c/li>\u003cli>\u003ca href=\"#S8-task\">Task D\u003c/a>\u003c/li>\u003cli>\u003cspan aria-current=\"page\">Request sent\u003c/span>\u003c/li>\u003c/ol>\u003c/nav>\n  \u003cspan class=\"avatar\" role=\"img\" aria-label=\"Your profile\">Y\u003c/span>\n\u003c/header>\n\u003cmain class=\"page sheet-page\">\n\u003csection class=\"card\">\n    \u003cdiv class=\"result-head\">\n      \u003cspan class=\"arrived-mark\">\u003csvg class=\"icon\" aria-hidden=\"true\">\u003cuse href=\"#send\"/>\u003c/svg>\u003c/span>\n      \u003cdiv>\u003ch1 class=\"sheet-title\">Request sent\u003c/h1>\u003cspan class=\"sheet-sub\">The tutor's reply will be emailed to every member of the group.\u003c/span>\u003c/div>\n    \u003c/div>\n    \u003cdiv class=\"sheet-actions single\">\u003ca class=\"btn primary\" href=\"#S8-task\">Back to task\u003c/a>\u003c/div>\n  \u003c/section>\n\u003c/main>\n","styles":""}}</script>
+</head>
+<body>
+<svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden" xmlns="http://www.w3.org/2000/svg">
+  
+  <symbol id="check" viewBox="0 0 24 24">
+    <path d="M5 12l5 5l10 -10" />
+  </symbol>
+  <symbol id="x" viewBox="0 0 24 24">
+    <path d="M18 6l-12 12" />
+    <path d="M6 6l12 12" />
+  </symbol>
+  <symbol id="chevron" viewBox="0 0 24 24">
+    <path d="M9 6l6 6l-6 6" />
+  </symbol>
+  <symbol id="back" viewBox="0 0 24 24">
+    <path d="M15 6l-6 6l6 6" />
+  </symbol>
+  <symbol id="clock" viewBox="0 0 24 24">
+    <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" />
+    <path d="M12 7v5l3 3" />
+  </symbol>
+  <symbol id="alert" viewBox="0 0 24 24">
+    <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" />
+    <path d="M12 8v4" />
+    <path d="M12 16h.01" />
+  </symbol>
+  <symbol id="info" viewBox="0 0 24 24">
+    <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" />
+    <path d="M12 9h.01" />
+    <path d="M11 12h1v4h1" />
+  </symbol>
+  <symbol id="plus" viewBox="0 0 24 24">
+    <path d="M12 5l0 14" />
+    <path d="M5 12l14 0" />
+  </symbol>
+  <symbol id="flag" viewBox="0 0 24 24">
+    <path d="M5 5a5 5 0 0 1 7 0a5 5 0 0 0 7 0v9a5 5 0 0 1 -7 0a5 5 0 0 0 -7 0v-9" />
+    <path d="M5 21v-7" />
+  </symbol>
+  <symbol id="mail" viewBox="0 0 24 24">
+    <path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" />
+    <path d="M3 7l9 6l9 -6" />
+  </symbol>
+  <symbol id="send" viewBox="0 0 24 24">
+    <path d="M10 14l11 -11" />
+    <path d="M21 3l-6.5 18a.55 .55 0 0 1 -1 0l-3.5 -7l-7 -3.5a.55 .55 0 0 1 0 -1l18 -6.5" />
+  </symbol>
+  <symbol id="git" viewBox="0 0 24 24">
+    <path d="M4 6a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+    <path d="M4 18a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+    <path d="M16 6a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+    <path d="M6 8v8" />
+    <path d="M18 8v2a3 3 0 0 1 -3 3h-6a3 3 0 0 0 -3 3" />
+  </symbol>
+  <symbol id="folder" viewBox="0 0 24 24">
+    <path d="M5 4h4l3 3h7a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-11a2 2 0 0 1 2 -2" />
+  </symbol>
+  <symbol id="chat" viewBox="0 0 24 24">
+    <path d="M8 9h8" />
+    <path d="M8 13h6" />
+    <path d="M18 4a3 3 0 0 1 3 3v8a3 3 0 0 1 -3 3h-5l-5 3v-3h-2a3 3 0 0 1 -3 -3v-8a3 3 0 0 1 3 -3h12z" />
+  </symbol>
+  <symbol id="file" viewBox="0 0 24 24">
+    <path d="M14 3v4a1 1 0 0 0 1 1h4" />
+    <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" />
+    <path d="M9 13h6" />
+    <path d="M9 17h6" />
+  </symbol>
+  <symbol id="video" viewBox="0 0 24 24">
+    <path d="M15 10l4.553 -2.276a1 1 0 0 1 1.447 .894v6.764a1 1 0 0 1 -1.447 .894l-4.553 -2.276v-4z" />
+    <path d="M3 8a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-8a2 2 0 0 1 -2 -2z" />
+  </symbol>
+  <symbol id="code" viewBox="0 0 24 24">
+    <path d="M7 8l-4 4l4 4" />
+    <path d="M17 8l4 4l-4 4" />
+    <path d="M14 4l-4 16" />
+  </symbol>
+  <symbol id="external" viewBox="0 0 24 24">
+    <path d="M17 7l-10 10" />
+    <path d="M8 7l9 0l0 9" />
+  </symbol>
+  <symbol id="link" viewBox="0 0 24 24">
+    <path d="M9 15l6 -6" />
+    <path d="M11 6l.463 -.536a5 5 0 0 1 7.071 7.072l-.534 .464" />
+    <path d="M13 18l-.397 .534a5.068 5.068 0 0 1 -7.127 0a4.972 4.972 0 0 1 0 -7.071l.524 -.463" />
+  </symbol>
+  <symbol id="help" viewBox="0 0 24 24">
+    <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" />
+    <path d="M12 16v.01" />
+    <path d="M12 13a2 2 0 0 0 .914 -3.782a1.98 1.98 0 0 0 -2.414 .483" />
+  </symbol>
+  <symbol id="calendar" viewBox="0 0 24 24">
+    <path d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z" />
+    <path d="M16 3v4" />
+    <path d="M8 3v4" />
+    <path d="M4 11h16" />
+  </symbol>
+  <symbol id="upload" viewBox="0 0 24 24">
+    <path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2" />
+    <path d="M7 9l5 -5l5 5" />
+    <path d="M12 4l0 12" />
+  </symbol>
+  <symbol id="users" viewBox="0 0 24 24">
+    <path d="M5 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
+    <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+    <path d="M21 21v-2a4 4 0 0 0 -3 -3.85" />
+  </symbol>
+  <symbol id="list-check" viewBox="0 0 24 24">
+    <path d="M3.5 5.5l1.5 1.5l2.5 -2.5" />
+    <path d="M3.5 11.5l1.5 1.5l2.5 -2.5" />
+    <path d="M3.5 17.5l1.5 1.5l2.5 -2.5" />
+    <path d="M11 6l9 0" />
+    <path d="M11 12l9 0" />
+    <path d="M11 18l9 0" />
+  </symbol>
+  
+  <symbol id="logo-gitlab" viewBox="-3 -4 119 119">
+    <g>
+    <path d="M113.077235,43.8409107 L112.929622,43.3980732 L97.282698,2.58321865 C96.9874731,1.77134993 96.3970231,1.10709371 95.6589606,0.664256223 C94.9208981,0.221418741 94.1090294,0 93.2233545,0 C92.3376795,0 91.5258108,0.369031235 90.8615546,0.885674964 C90.1972983,1.40231869 89.6806546,2.14038116 89.4592359,3.02605613 L78.9049425,35.3531923 L36.1711255,35.3531923 L25.6168322,3.02605613 C25.3954135,2.21418741 24.8787697,1.47612494 24.2145135,0.885674964 C23.5502573,0.369031235 22.7383886,0 21.8527136,0 C20.9670386,0 20.1551699,0.147612494 19.4171074,0.664256223 C18.679045,1.10709371 18.088595,1.77134993 17.79337,2.58321865 L2.14644564,43.3980732 L1.99883315,43.8409107 C-2.65096041,55.9451352 1.33457693,69.5992909 11.6674515,77.4227531 L11.815064,77.4227531 C11.815064,77.4965594 35.6544818,95.3576711 35.6544818,95.3576711 L47.4634813,104.288227 L54.6226873,109.676083 C56.320231,111.004596 58.7558371,111.004596 60.4533808,109.676083 L67.6125867,104.288227 L79.4215863,95.3576711 L103.408617,77.4227531 L103.408617,77.4227531 C113.741491,69.5992909 117.653222,55.9451352 113.003429,43.8409107 L113.077235,43.8409107 Z" fill="#E24329"/>
+    <path d="M113.077235,43.8409107 L112.929622,43.3980732 C105.179966,45.0218107 98.0207605,48.2692855 91.894842,52.8452729 C91.8210358,52.8452729 73.2956678,66.942266 57.5011309,78.8250718 C69.1625179,87.6818214 79.34778,95.3576711 79.34778,95.3576711 L103.33481,77.4227531 L103.33481,77.4227531 C113.667685,69.5992909 117.579416,55.9451352 112.929622,43.8409107 L113.077235,43.8409107 Z" fill="#FC6D26"/>
+    <path d="M35.5806755,95.3576711 L47.3896751,104.288227 L54.548881,109.676083 C56.2464247,111.004596 58.6820309,111.004596 60.3795745,109.676083 L67.5387805,104.288227 L79.34778,95.3576711 C79.34778,95.3576711 69.1625179,87.6818214 57.5011309,78.8250718 C45.7659376,87.6818214 35.5806755,95.3576711 35.5806755,95.3576711 L35.5806755,95.3576711 L35.5806755,95.3576711 Z" fill="#FCA326"/>
+    <path d="M23.1074198,52.8452729 C16.9815013,48.2692855 9.82229533,44.9480044 2.0726394,43.3980732 L1.9250269,43.8409107 C-2.72476666,55.9451352 1.26077068,69.5992909 11.5936453,77.4227531 L11.7412578,77.4227531 C11.7412578,77.4965594 35.5806755,95.3576711 35.5806755,95.3576711 C35.5806755,95.3576711 45.7659376,87.6818214 57.5011309,78.8250718 C41.7804003,66.942266 23.2550323,52.9190791 23.1074198,52.8452729 L23.1074198,52.8452729 L23.1074198,52.8452729 Z" fill="#FC6D26"/>
+    </g>
+  </symbol>
+  <symbol id="logo-drive" viewBox="0 -9 256 256">
+    <defs>
+    <path d="M77.303013,29.2696361 C99.8343226,-9.75577512 156.165677,-9.75731561 178.696987,29.2696361 L248.07019,149.428404 C270.601499,188.455356 242.436592,237.238275 197.372432,237.238275 L58.6275676,237.238275 C13.563408,237.238275 -14.6014992,188.455356 7.92981036,149.428404 L77.303013,29.2696361 Z" id="drive-path-1"/>
+    <linearGradient x1="86.9238621%" y1="94.293942%" x2="7.62952552%" y2="45.9524317%" id="drive-linearGradient-3">
+    <stop stop-color="#FFE921" offset="9%"/>
+    <stop stop-color="#FEC700" offset="100%"/>
+    </linearGradient>
+    <linearGradient x1="99.5381738%" y1="93.9010829%" x2="23.4369107%" y2="54.0328204%" id="drive-linearGradient-4">
+    <stop stop-color="#A9A8FF" offset="15%"/>
+    <stop stop-color="#6D97FF" offset="33%"/>
+    <stop stop-color="#3186FF" offset="48%"/>
+    </linearGradient>
+    <linearGradient x1="87.1278959%" y1="51.5184912%" x2="-0.638984139%" y2="93.0781332%" id="drive-linearGradient-5">
+    <stop stop-color="#0EBC5F" offset="55%"/>
+    <stop stop-color="#78C9FF" offset="85%"/>
+    </linearGradient>
+    </defs>
+    <g>
+    <mask id="drive-mask-2" fill="white">
+    <use href="#drive-path-1"/>
+    </mask>
+    <g mask="url(#drive-mask-2)">
+    <g transform="translate(-42.8696, -58.6696)">
+    <polygon fill="url(#drive-linearGradient-3)" points="341.719213 295.937182 200.166022 295.937182 170.873471 245.202453 241.650066 122.61278"/>
+    <polygon fill="url(#drive-linearGradient-4)" points="0 295.915615 100.069146 122.591213 100.069146 122.594294 70.787379 173.316699 129.357076 173.316699 200.139833 295.912534 0.00154049703 295.914074"/>
+    <polygon fill="url(#drive-linearGradient-5)" points="170.881173 0 241.66239 122.600456 212.376001 173.325942 70.8120269 173.325942"/>
+    </g>
+    </g>
+    </g>
+  </symbol>
+  <symbol id="logo-discord" viewBox="0 -28.5 256 256">
+    <g>
+    <path d="M216.856339,16.5966031 C200.285002,8.84328665 182.566144,3.2084988 164.041564,0 C161.766523,4.11318106 159.108624,9.64549908 157.276099,14.0464379 C137.583995,11.0849896 118.072967,11.0849896 98.7430163,14.0464379 C96.9108417,9.64549908 94.1925838,4.11318106 91.8971895,0 C73.3526068,3.2084988 55.6133949,8.86399117 39.0420583,16.6376612 C5.61752293,67.146514 -3.4433191,116.400813 1.08711069,164.955721 C23.2560196,181.510915 44.7403634,191.567697 65.8621325,198.148576 C71.0772151,190.971126 75.7283628,183.341335 79.7352139,175.300261 C72.104019,172.400575 64.7949724,168.822202 57.8887866,164.667963 C59.7209612,163.310589 61.5131304,161.891452 63.2445898,160.431257 C105.36741,180.133187 151.134928,180.133187 192.754523,160.431257 C194.506336,161.891452 196.298154,163.310589 198.110326,164.667963 C191.183787,168.842556 183.854737,172.420929 176.223542,175.320965 C180.230393,183.341335 184.861538,190.991831 190.096624,198.16893 C211.238746,191.588051 232.743023,181.531619 254.911949,164.955721 C260.227747,108.668201 245.831087,59.8662432 216.856339,16.5966031 Z M85.4738752,135.09489 C72.8290281,135.09489 62.4592217,123.290155 62.4592217,108.914901 C62.4592217,94.5396472 72.607595,82.7145587 85.4738752,82.7145587 C98.3405064,82.7145587 108.709962,94.5189427 108.488529,108.914901 C108.508531,123.290155 98.3405064,135.09489 85.4738752,135.09489 Z M170.525237,135.09489 C157.88039,135.09489 147.510584,123.290155 147.510584,108.914901 C147.510584,94.5396472 157.658606,82.7145587 170.525237,82.7145587 C183.391518,82.7145587 193.761324,94.5189427 193.539891,108.914901 C193.539891,123.290155 183.391518,135.09489 170.525237,135.09489 Z" fill="#5865F2" fill-rule="nonzero"/>
+    </g>
+  </symbol>
+</svg>
+<div id="screen"></div>
+<script>
+(() => {
+  const screens = JSON.parse(document.getElementById("screens").textContent);
+  const styles = document.getElementById("screen-styles");
+  const root = document.getElementById("screen");
+
+  function showScreen() {
+    const name = location.hash.slice(1);
+    const screen = Object.hasOwn(screens, name)
+      ? screens[name]
+      : screens["S1-my-courses"];
+    document.title = screen.title;
+    styles.textContent = screen.styles;
+    root.innerHTML = screen.body;
+    window.scrollTo(0, 0);
+  }
+
+  document.addEventListener("click", (event) => {
+    if (event.target.closest('a[href="#"]')) event.preventDefault();
+  });
+  window.addEventListener("hashchange", showScreen);
+  showScreen();
+})();
+
+</script>
+</body>
+</html>
