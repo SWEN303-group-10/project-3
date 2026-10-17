@@ -1,0 +1,107 @@
+// Fixed sample data for the prototype at this stage tba..
+
+export type Status = 'ready' | 'unfinished' | 'missing'
+
+export interface Course {
+  code: string
+  name: string
+  group: string
+  members: number
+  open: boolean
+}
+
+export interface Member {
+  id: number
+  name: string
+  email: string
+  activity: { figure: string; label: string; status?: Status }
+}
+
+export type Lane = 'To do' | 'In progress' | 'Done'
+
+export type Owner = number | 'you'
+
+export interface Task {
+  id: string
+  name: string
+  lane: Lane
+  owner: Owner | null
+}
+
+export const you = { initials: 'Y', name: 'You', email: 'you@myvuw.ac.nz' }
+
+export const courses: Course[] = [
+  { code: 'ENGR101', name: 'Engineering Technology', group: 'Group 7', members: 6, open: true },
+  { code: 'SWEN225', name: 'Software Design', group: 'Team 4', members: 4, open: false },
+]
+
+export const group = {
+  course: 'ENGR101',
+  courseName: 'Engineering Technology',
+  name: 'Group 7',
+  label: 'ENGR101 Group 7',
+  dueToday: 'Due today, 11:59 pm',
+  due: 'Today, 11:59 pm',
+}
+
+export const members: Member[] = [
+  { id: 1, name: 'Member 1', email: 'member1@myvuw.ac.nz', activity: { figure: 'Today', label: 'last active' } },
+  { id: 2, name: 'Member 2', email: 'member2@myvuw.ac.nz', activity: { figure: 'Yesterday', label: 'last active' } },
+  { id: 3, name: 'Member 3', email: 'member3@myvuw.ac.nz', activity: { figure: '2 days ago', label: 'last active' } },
+  { id: 4, name: 'Member 4', email: 'member4@myvuw.ac.nz', activity: { figure: '14 days', label: 'no commits or edits', status: 'missing' } },
+  { id: 5, name: 'Member 5', email: 'member5@myvuw.ac.nz', activity: { figure: 'Today', label: 'last active' } },
+]
+
+export const resources = [
+  { logo: 'logo-gitlab', name: 'GitLab repo', detail: 'engr101/group-7' },
+  { logo: 'logo-drive', name: 'Google Drive', detail: 'Group 7 shared folder' },
+  { logo: 'logo-discord', name: 'Group chat', detail: 'Discord' },
+]
+
+export const lanes: Lane[] = ['To do', 'In progress', 'Done']
+
+export const initialTasks: Task[] = [
+  { id: 'a', name: 'Task A', lane: 'To do', owner: null },
+  { id: 'b', name: 'Task B', lane: 'To do', owner: null },
+  { id: 'c', name: 'Task C', lane: 'To do', owner: 3 },
+  { id: 'd', name: 'Task D', lane: 'In progress', owner: 2 },
+  { id: 'e', name: 'Task E', lane: 'Done', owner: 1 },
+]
+
+// Only Task D has one so far
+export const notes: Record<string, { author: number; when: string; text: string }[]> = {
+  d: [
+    {
+      author: 2,
+      when: 'yesterday',
+      text: 'blah blah blah blah',
+    },
+  ],
+}
+
+export interface Deliverable {
+  name: string
+  where: string
+  owner: Owner
+  status: Status
+  label: string
+  action?: 'email' | 'add-link'
+}
+
+export const deliverables: Deliverable[] = [
+  { name: 'Code', where: 'GitLab, engr101/group-7', owner: 1, status: 'ready', label: 'Ready' },
+  { name: 'Report', where: 'Google Drive, Group 7 shared folder', owner: 3, status: 'unfinished', label: 'Unfinished', action: 'email' },
+  { name: 'Demo video', where: 'No link yet', owner: 'you', status: 'missing', label: 'Missing', action: 'add-link' },
+]
+
+export function member(id: number) {
+  return members.find((m) => m.id === id)
+}
+
+export function ownerName(owner: Owner) {
+  return owner === 'you' ? you.name : (member(owner)?.name ?? '')
+}
+
+export function initials(owner: Owner) {
+  return owner === 'you' ? you.initials : `M${owner}`
+}

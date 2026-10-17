@@ -1,0 +1,162 @@
+:root {
+  color-scheme: light dark;
+  --c-bg: #fafafa;
+  --c-surface: #ffffff;
+  --c-surface-2: #f5f5f5;
+  --c-surface-3: #efefef;
+  --c-raised: #ffffff;
+  --c-fill: #efefef;
+  --c-fill-strong: #e5e5e5;
+  --c-well: #f4f4f4;
+  --c-ink: #171717;
+  --c-ink-2: #525252;
+  --c-ink-3: #6b6b6b;
+  --c-ink-4: #858585;
+  --c-on-ink: #ffffff;
+  --c-ink-hover: #333333;
+  --c-green: #16a34a;
+  --c-green-text: #15803d;
+  --c-green-bg: #f0fdf4;
+  --c-red: #b91c1c;
+  --c-red-text: #b91c1c;
+  --c-red-bg: #fef2f2;
+  --c-accent: #2563eb;
+  --c-shadow: 0 0 0;
+  --c-shadow-a: 0.12;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --c-bg: #0e0e0e;
+    --c-surface: #161616;
+    --c-surface-2: #212121;
+    --c-surface-3: #292929;
+    --c-raised: #262626;
+    --c-fill: #2b2b2b;
+    --c-fill-strong: #383838;
+    --c-well: #1d1d1d;
+    --c-ink: #ededed;
+    --c-ink-2: #b0b0b0;
+    --c-ink-3: #a1a1a1;
+    --c-ink-4: #7a7a7a;
+    --c-on-ink: #111111;
+    --c-ink-hover: #cfcfcf;
+    --c-green: #22c55e;
+    --c-green-text: #4ade80;
+    --c-green-bg: rgb(34 197 94 / 0.12);
+    --c-red: #f87171;
+    --c-red-text: #f87171;
+    --c-red-bg: rgb(248 113 113 / 0.1);
+    --c-accent: #60a5fa;
+    --c-shadow-a: 0.5;
+  }
+}
+:root[data-theme='light'] { color-scheme: light; }
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --c-bg: #0e0e0e;
+  --c-surface: #161616;
+  --c-surface-2: #212121;
+  --c-surface-3: #292929;
+  --c-raised: #262626;
+  --c-fill: #2b2b2b;
+  --c-fill-strong: #383838;
+  --c-well: #1d1d1d;
+  --c-ink: #ededed;
+  --c-ink-2: #b0b0b0;
+  --c-ink-3: #a1a1a1;
+  --c-ink-4: #7a7a7a;
+  --c-on-ink: #111111;
+  --c-ink-hover: #cfcfcf;
+  --c-green: #22c55e;
+  --c-green-text: #4ade80;
+  --c-green-bg: rgb(34 197 94 / 0.12);
+  --c-red: #f87171;
+  --c-red-text: #f87171;
+  --c-red-bg: rgb(248 113 113 / 0.1);
+  --c-accent: #60a5fa;
+  --c-shadow-a: 0.5;
+}
+
+:root {
+  --bg: var(--c-bg);
+  --panel: var(--c-surface);
+  --hover: var(--c-surface-2);
+  --active: var(--c-surface-3);
+  --subtle: var(--c-surface-2);
+  --well: var(--c-well);
+  --raised: var(--c-raised);
+  --fill: var(--c-fill);
+  --fill-strong: var(--c-fill-strong);
+  --text: var(--c-ink);
+  --neutral-text: var(--c-ink-2);
+  --muted: var(--c-ink-3);
+  --faint: var(--c-ink-4);
+  --on-accent: var(--c-on-ink);
+  --accent-hover: var(--c-ink-hover);
+  --shadow: rgb(var(--c-shadow) / var(--c-shadow-a));
+
+  --ready: var(--c-green);
+  --ready-text: var(--c-green-text);
+  --ready-bg: var(--c-green-bg);
+  --missing: var(--c-red);
+  --missing-text: var(--c-red-text);
+  --missing-bg: var(--c-red-bg);
+  --focus: var(--c-accent);
+}
+
+:root {
+  --sans: "SF Pro", "SF Pro Text", "SF Pro Display", -apple-system,
+          BlinkMacSystemFont, system-ui, 'Segoe UI', sans-serif;
+  --mono: "SF Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --fs-hero: 30px;
+  --fs-title: 22px;
+  --fs-value: 20px;
+  --fs-heading: 17px;
+  --fs-body: 15px;
+  --fs-label: 13px;
+  --fs-micro: 12px;
+  --lh-tight: 1.15;
+  --lh-snug: 1.3;
+  --lh-body: 1.45;
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+  --tracking-tight: -0.02em;
+  --tracking-micro: 0.06em;
+  --s-1: 2px;  --s-2: 4px;  --s-3: 6px;  --s-4: 8px;  --s-5: 12px;
+  --s-6: 16px; --s-7: 20px; --s-8: 24px; --s-9: 32px; --s-10: 40px;
+  --gutter: var(--s-10);
+  --stack: var(--s-6);
+  --content-max: 1200px;
+  --sheet-max: 560px;
+  --wide-max: 1040px;
+  --side-width: 340px;
+  --course-min: 320px;
+  --owner-col: 140px;
+  --status-col: 84px;
+  --action-col: 96px;
+  --bar-height: 56px;
+  --avatar-size: 32px;
+  --avatar-small-size: 24px;
+  --lead-col: 32px;
+  --cushion-width: 150px;
+  --field-height: 140px;
+  --r-control: 8px;
+  --pad-card: var(--s-6);
+  --pad-track: var(--s-2);
+  --r-inner: calc(var(--tap) / 2);
+  --r-card: calc(var(--r-inner) + var(--pad-card));
+  --r-step: calc(var(--r-inner) - var(--pad-track));
+  --pad-step: var(--s-5);
+  --inset-text: calc(var(--pad-track) + var(--pad-step));
+  --r-pill: 999px;
+  --e-1: 0 1px 2px rgb(var(--c-shadow) / calc(var(--c-shadow-a) * 0.35));
+  --e-2: 0 2px 8px rgb(var(--c-shadow) / calc(var(--c-shadow-a) * 0.55));
+  --e-3: 0 8px 28px rgb(var(--c-shadow) / var(--c-shadow-a));
+  --motion: 140ms cubic-bezier(0.2, 0, 0, 1);
+  --tap: 44px; 
+  --tap-compact: 32px;
+}
