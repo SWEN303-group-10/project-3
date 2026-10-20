@@ -1,0 +1,47 @@
+/* Append to app.css */
+
+/* Members + chat card: narrower than before, with a fixed-height body so
+   switching tabs never changes the card's size. */
+.summary { grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); }
+
+.tabs {
+  display: flex; gap: var(--s-2); align-self: flex-start;
+  padding: var(--pad-track); background: var(--well);
+  border-radius: calc(var(--r-control) + var(--pad-track));
+}
+.tab {
+  min-height: var(--tap-compact); padding: 0 var(--s-6);
+  border: 0; border-radius: var(--r-control); background: transparent;
+  color: var(--muted); font-size: var(--fs-label); font-weight: var(--fw-medium);
+  cursor: pointer; transition: background var(--motion), color var(--motion);
+}
+.tab:hover { color: var(--text); }
+.tab:focus-visible { border-radius: var(--r-control); }
+/* Selected tab uses the same ink/on-ink pair as .btn.primary, so it flips with the theme. */
+.tab[aria-selected="true"] { background: var(--text); color: var(--on-accent); }
+.tab[aria-selected="true"]:hover { background: var(--accent-hover); }
+
+.panel-body { height: 300px; overflow-y: auto; }
+.members-list > li {
+  grid-template-columns: var(--avatar-small-size) minmax(0, 1fr) auto;
+  min-height: var(--tap-compact); padding: var(--s-2) 0;
+}
+.members-list > li > .avatar { justify-self: start; }
+
+.panel-body.chat { display: flex; flex-direction: column; gap: var(--s-5); overflow: hidden; }
+.chat-log {
+  flex: 1; min-height: 0; overflow-y: auto;
+  display: flex; flex-direction: column; gap: var(--s-5);
+}
+.chat-msg { display: grid; grid-template-columns: var(--avatar-small-size) 1fr; gap: var(--s-4); align-items: start; }
+.chat-msg p { line-height: var(--lh-snug); overflow-wrap: anywhere; }
+.chat-compose { display: flex; align-items: center; gap: var(--s-4); }
+.chat-compose input { flex: 1; min-width: 0; }
+.chat-compose .btn:disabled { opacity: 0.4; cursor: default; }
+
+@media (min-width: 601px) {
+  .members-list .cushion.in-row { width: 120px; }
+}
+@media (max-width: 960px) {
+  .summary { grid-template-columns: minmax(0, 1fr); }
+}

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { initialTasks, member, type Task } from './data'
+import { initialTasks, initialMessages, member, type ChatMessage, type Task } from './data'
 import { usePath } from './router'
 import { MyCourses } from './screens/MyCourses'
 import { Group } from './screens/Group'
@@ -8,6 +8,12 @@ import { EmailMember, EmailSent } from './screens/Email'
 import { AskHelp, HelpSent, TaskPage } from './screens/Task'
 
 export default function App() {
+  const [messages, setMessages] = useState<ChatMessage[]>(initialMessages)
+  const sendMessage = (text: string) =>
+    setMessages((ms) => [
+      ...ms,
+      { id: ms.length + 1, author: 'you', time: new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' }), text },
+    ])
   const path = usePath()
   const [tasks, setTasks] = useState<Task[]>(initialTasks)
   const setOwner = (id: string, owner: Task['owner']) =>
@@ -16,7 +22,7 @@ export default function App() {
   let m: RegExpMatchArray | null
 
   if (path === '/group') {
-    return <Group tasks={tasks} assign={(id) => setOwner(id, 'you')} unassign={(id) => setOwner(id, null)} />
+    return <Group tasks={tasks} assign={(id) => setOwner(id, 'you')} unassign={(id) => setOwner(id, null)} messages={messages} sendMessage={sendMessage}/>
   }
   if (path === '/group/submit') return <Submit />
   if (path === '/group/submitted') return <Submitted />

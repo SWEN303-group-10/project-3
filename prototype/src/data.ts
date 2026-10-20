@@ -79,6 +79,8 @@ export const notes: Record<string, { author: number; when: string; text: string 
   ],
 }
 
+export interface ChatMessage { id: number; author: Owner; time: string; text: string }
+
 export interface Deliverable {
   name: string
   where: string
@@ -87,6 +89,12 @@ export interface Deliverable {
   label: string
   action?: 'email' | 'add-link'
 }
+
+export const initialMessages: ChatMessage[] = [
+  { id: 1, author: 1, time: 'Yesterday, 4:12 pm', text: 'blah blah blah' },
+  { id: 2, author: 2, time: 'Yesterday, 4:20 pm', text: 'blah blah blah blah' },
+  { id: 3, author: 3, time: 'Today, 9:05 am', text: 'blah blah' },
+]
 
 export const deliverables: Deliverable[] = [
   { name: 'Code', where: 'GitLab, engr101/group-7', owner: 1, status: 'ready', label: 'Ready' },
