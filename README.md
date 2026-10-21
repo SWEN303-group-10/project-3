@@ -2,6 +2,11 @@
 
 [Live site](https://swen303-group-10.github.io/project-3/)
 
+## Final diagrams
+
+![Design timeline](./wireframes/final/diagrams/design-timeline.png)
+![Screen flow](./wireframes/final/diagrams/screen-flow.png)
+
 ## Iteration history
 
 - [Iteration 1 wireframes](./wireframes/iteration-1/index.html)
