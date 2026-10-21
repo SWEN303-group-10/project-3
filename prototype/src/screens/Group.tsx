@@ -23,8 +23,68 @@ export function Group({ tasks, assign, unassign, messages, sendMessage }: GroupP
     <Page title={group.label} crumbs={[{ label: 'My courses', to: paths.courses }, { label: group.label }]}>
       <Head title={group.name} lede={`${group.course} ${group.courseName} · ${members.length + 1} members`} />
 
+      <section className="board">
+        <h2 className="section-title">Tasks</h2>
+        <div className="lanes">
+          {lanes.map((lane) => {
+            const inLane = tasks.filter((t) => t.lane === lane)
+            return (
+              <div className="track" key={lane}>
+                <div className="option-divider">
+                  <b>{lane}</b>
+                  {inLane.length}
+                </div>
+                {inLane.map((t) => (
+                  <TaskRow key={t.id} task={t} assign={assign} unassign={unassign} />
+                ))}
+              </div>
+            )
+          })}
+        </div>
+      </section>
       <div className="summary">
-        <section className="card">
+        <div className="column">
+          <section className="card">
+            <div className="sheet-head">
+              <div>
+                <h2>Submission</h2>
+                <span className="sheet-sub">{group.dueToday}</span>
+              </div>
+              <Cushion
+                figure={`${ready} of ${deliverables.length}`}
+                label="deliverables ready"
+                status={ready < deliverables.length ? 'missing' : undefined}
+              />
+            </div>
+            <Actions single>
+              <Button kind="secondary" to={paths.submit}>
+                Check submission
+              </Button>
+            </Actions>
+          </section>
+          <section className="card">
+            <h2>Project resources</h2>
+            <ul className="rows">
+              {resources.map((r) => (
+                <li key={r.name}>
+                  <span className="step-lead">
+                    <Icon name={r.logo} className="logo" />
+                  </span>
+                  <span className="step-body">
+                    {/* Resources with a `to` open a page in the prototype; the rest are placeholders. */}
+                    <a className="stretch step-title" href={r.to ? href(r.to) : '#'}>
+                      {r.name}
+                    </a>
+                    <span className="step-sub">{r.detail}</span>
+                  </span>
+                  <Icon name={r.to ? 'chevron' : 'external'} className={r.to ? 'icon chevron' : 'icon external'} />
+                </li>
+              ))}
+            </ul>
+          </section>
+        </div>
+
+        <section className="card people">
           <div className="tabs" role="tablist" aria-label="Members and chat">
             {(['members', 'chat'] as const).map((t) => (
               <button
@@ -81,68 +141,7 @@ export function Group({ tasks, assign, unassign, messages, sendMessage }: GroupP
             <Chat messages={messages} send={sendMessage} />
           </div>
         </section>
-
-        <div className="column">
-          <section className="card">
-            <h2>Project resources</h2>
-            <ul className="rows">
-              {resources.map((r) => (
-                <li key={r.name}>
-                  <span className="step-lead">
-                    <Icon name={r.logo} className="logo" />
-                  </span>
-                  <span className="step-body">
-                    {/* Resources with a `to` open a page in the prototype; the rest are placeholders. */}
-                    <a className="stretch step-title" href={r.to ? href(r.to) : '#'}>
-                      {r.name}
-                    </a>
-                    <span className="step-sub">{r.detail}</span>
-                  </span>
-                  <Icon name={r.to ? 'chevron' : 'external'} className={r.to ? 'icon chevron' : 'icon external'} />
-                </li>
-              ))}
-            </ul>
-          </section>
-          <section className="card">
-            <div className="sheet-head">
-              <div>
-                <h2>Submission</h2>
-                <span className="sheet-sub">{group.dueToday}</span>
-              </div>
-              <Cushion
-                figure={`${ready} of ${deliverables.length}`}
-                label="items ready"
-                status={ready < deliverables.length ? 'missing' : undefined}
-              />
-            </div>
-            <Actions single>
-              <Button kind="secondary" to={paths.submit}>
-                Check submission
-              </Button>
-            </Actions>
-          </section>
-        </div>
       </div>
-
-      <section className="board">
-        <h2 className="section-title">Tasks</h2>
-        <div className="lanes">
-          {lanes.map((lane) => {
-            const inLane = tasks.filter((t) => t.lane === lane)
-            return (
-              <div className="track" key={lane}>
-                <div className="option-divider">
-                  <b>{lane}</b>
-                  {inLane.length}
-                </div>
-                {inLane.map((t) => (
-                  <TaskRow key={t.id} task={t} assign={assign} unassign={unassign} />
-                ))}
-              </div>
-            )
-          })}
-        </div>
-      </section>
     </Page>
   )
 }

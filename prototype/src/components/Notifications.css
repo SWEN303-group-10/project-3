@@ -1,55 +1,49 @@
-/* Append to app.css (after chat.css) */
-
 .bar-end { margin-left: auto; display: flex; align-items: center; gap: var(--s-4); }
 .bar-end .avatar { margin-left: 0; }
 
 .bell-wrap { position: relative; }
+/* The same size and fill as the profile picture beside it. */
 .bell {
   position: relative; display: grid; place-items: center;
-  width: var(--tap-compact); height: var(--tap-compact);
-  border: 0; border-radius: 50%; background: transparent;
-  color: var(--muted); cursor: pointer;
+  width: var(--avatar-size); height: var(--avatar-size);
+  border: 0; border-radius: 50%; background: var(--active);
+  color: var(--neutral-text); cursor: pointer;
   transition: background var(--motion), color var(--motion);
 }
-.bell:hover { background: var(--hover); color: var(--text); }
-/* Emphasised while anything is unread. */
-.bell.has-unread { background: var(--missing-bg); color: var(--missing-text); }
-.bell.has-unread:hover { background: var(--missing-bg); }
+.bell:hover, .bell[aria-expanded="true"] { background: var(--fill-strong); color: var(--text); }
+.bell:focus-visible { border-radius: 50%; }
 .bell-badge {
-  position: absolute; top: -2px; right: -2px;
-  min-width: 16px; height: 16px; padding: 0 4px;
+  position: absolute; top: calc(-1 * var(--s-2)); right: calc(-1 * var(--s-2));
+  min-width: var(--badge-size); height: var(--badge-size); padding: 0 var(--s-2);
   display: grid; place-items: center;
   border-radius: var(--r-pill);
-  background: var(--missing); color: var(--on-accent);
-  font-size: 11px; font-weight: var(--fw-bold); line-height: 1;
+  background: var(--text); color: var(--on-accent);
+  font-size: var(--fs-badge); font-weight: var(--fw-semibold); line-height: 1;
   font-variant-numeric: tabular-nums;
-  box-shadow: 0 0 0 2px var(--bg);
+  box-shadow: 0 0 0 var(--s-1) var(--bg);
 }
 
 .notif-panel {
   position: absolute; z-index: 20; top: calc(100% + var(--s-4)); right: 0;
-  width: 380px; max-width: calc(100vw - 2 * var(--gutter));
-  background: var(--panel); border-radius: 16px; box-shadow: var(--e-3);
-  padding: var(--s-4); display: flex; flex-direction: column; gap: var(--s-2);
+  width: var(--notif-width); max-width: calc(100vw - 2 * var(--gutter));
+  box-shadow: var(--e-3);
 }
-.notif-head { display: flex; align-items: center; justify-content: space-between; gap: var(--s-4); padding: var(--s-3) var(--s-3) var(--s-3) var(--s-5); }
-.notif-head h2 { font-size: var(--fs-heading); font-weight: var(--fw-semibold); letter-spacing: var(--tracking-tight); }
-.notif-head .btn:disabled { opacity: 0.4; cursor: default; }
-.notif-list { display: flex; flex-direction: column; gap: var(--s-1); max-height: min(420px, 60vh); overflow-y: auto; }
-.notif {
-  display: grid; grid-template-columns: var(--avatar-small-size) minmax(0, 1fr) auto;
-  align-items: start; gap: var(--s-4); width: 100%; text-align: left;
-  padding: var(--s-5); border: 0; border-radius: 12px;
-  background: transparent; cursor: pointer; transition: background var(--motion);
+.notif-panel .sheet-head .btn { margin-right: calc(-1 * var(--s-4)); }
+.notif-panel .btn:disabled { opacity: 0.4; cursor: default; }
+.notif-list { max-height: min(var(--notif-max), 60vh); overflow-y: auto; }
+
+.step.notif {
+  width: 100%; border: 0; background: transparent;
+  font: inherit; color: inherit; text-align: left; cursor: pointer;
+  align-items: start;
 }
-.notif:hover { background: var(--hover); }
-.notif.is-unread { background: var(--well); }
-.notif.is-unread:hover { background: var(--active); }
+.step.notif.is-now { background: var(--raised); }
+.step.notif > .avatar { margin-top: var(--s-1); }
 .notif-text { font-size: var(--fs-label); line-height: var(--lh-snug); overflow-wrap: anywhere; }
 .notif .step-sub { white-space: normal; }
 .notif-group { font-weight: var(--fw-semibold); color: var(--neutral-text); }
-.notif-dot { width: 8px; height: 8px; margin-top: 6px; border-radius: 50%; background: var(--missing); }
-.notif-empty { padding: var(--s-5); }
+.notif-dot { width: var(--s-4); height: var(--s-4); margin-top: var(--s-3); border-radius: 50%; background: var(--text); }
+.notif-empty { padding: var(--s-5) 0; }
 
 .sr-only {
   position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;

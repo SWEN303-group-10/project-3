@@ -116,9 +116,6 @@ export function initials(owner: Owner) {
 }
 
 
-// Add to data.ts. Also add this import at the top of the file:
-//   import { paths } from './router'
-
 export interface Notification {
   id: string
   group: string // which group it came from, shown on every notification
@@ -134,7 +131,7 @@ export const initialNotifications: Notification[] = [
     id: 'n1',
     group: 'ENGR101 Group 7',
     actor: 1,
-    text: 'opened a pull request on GitHub: “Add login form validation”',
+    text: 'opened a merge request on GitLab: “Add login form validation”',
     when: '12 min ago',
     unread: true,
     to: "/group",
@@ -170,7 +167,7 @@ export const initialNotifications: Notification[] = [
     id: 'n5',
     group: 'SWEN225 Team 4',
     actor: 2,
-    text: 'requested your review on a pull request on GitHub',
+    text: 'requested your review on a pull request on GitLab',
     when: '2 days ago',
     unread: false,
   },

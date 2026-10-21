@@ -21,7 +21,7 @@ export function Submit() {
           <div className="sheet-head">
             <div>
               <h2 className="sheet-title">Deliverables</h2>
-              <span className="sheet-sub">{deliverables.length} items</span>
+              <span className="sheet-sub">{deliverables.length} to submit</span>
             </div>
           </div>
           <div className="track">
@@ -60,14 +60,14 @@ export function Submit() {
             <div>
               <dt className="ask-label">Ready</dt>
               <dd className="ask-value">
-                {ready} of {deliverables.length} items
+                {ready} of {deliverables.length} deliverables
               </dd>
             </div>
           </dl>
           {notReady > 0 && (
             <p className="watch">
               <Icon name="alert" />
-              <span>{notReady} items are not ready. Submitting sends them as is.</span>
+              <span>{notReady === 1 ? '1 deliverable is' : `${notReady} deliverables are`} not ready. Submitting sends {notReady === 1 ? 'it' : 'them'} as is.</span>
             </p>
           )}
           <Actions single>

@@ -243,7 +243,8 @@ input:focus-visible, textarea:focus-visible { box-shadow: inset 0 -2px 0 var(--f
 .task-note p { line-height: var(--lh-body); }
 .task-note .sheet-sub { margin-bottom: var(--s-2); }
 
-.brief p { line-height: var(--lh-body); color: var(--neutral-text); }
+.brief p { max-width: var(--measure); line-height: var(--lh-body); color: var(--neutral-text); }
+.brief-list li { max-width: var(--measure); }
 .brief-list { display: flex; flex-direction: column; gap: var(--s-4); }
 .brief-list li { line-height: var(--lh-body); color: var(--neutral-text); }
 .brief-list b { color: var(--text); font-weight: var(--fw-semibold); }

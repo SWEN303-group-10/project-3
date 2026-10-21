@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useRef, useState, type ReactNode } from 'react'
-import { Avatar } from './ui'
+import { Avatar, Icon } from './ui'
 import { initialNotifications, initials, ownerName, type Notification } from '../data'
 import { usePath } from '../router'
 import './Notifications.css'
@@ -28,15 +28,6 @@ function useNotifications() {
   const ctx = useContext(NotificationsContext)
   if (!ctx) throw new Error('NotificationBell must be inside NotificationsProvider')
   return ctx
-}
-
-function BellIcon() {
-  return (
-    <svg className="icon lg" aria-hidden="true">
-      <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" />
-      <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0" />
-    </svg>
-  )
 }
 
 export function NotificationBell() {
@@ -86,7 +77,7 @@ export function NotificationBell() {
         aria-controls="notifications-panel"
         onClick={() => setOpen((o) => !o)}
       >
-        <BellIcon />
+        <Icon name="bell" className="icon lg" />
         {unread > 0 && (
           <span className="bell-badge" aria-hidden="true">
             {unread}
@@ -95,8 +86,8 @@ export function NotificationBell() {
       </button>
 
       {open && (
-        <section className="notif-panel" id="notifications-panel" aria-label="Notifications">
-          <div className="notif-head">
+        <section className="card notif-panel" id="notifications-panel" aria-label="Notifications">
+          <div className="sheet-head">
             <h2>Notifications</h2>
             <button type="button" className="btn ghost compact" onClick={markAllRead} disabled={unread === 0}>
               Mark all as read
@@ -105,10 +96,10 @@ export function NotificationBell() {
           {items.length === 0 ? (
             <p className="sheet-sub notif-empty">You’re all caught up.</p>
           ) : (
-            <ul className="notif-list">
+            <ul className="track notif-list">
               {items.map((n) => (
                 <li key={n.id}>
-                  <button type="button" className={n.unread ? 'notif is-unread' : 'notif'} onClick={() => openItem(n)}>
+                  <button type="button" className={n.unread ? 'step notif is-now' : 'step notif'} onClick={() => openItem(n)}>
                     <Avatar small empty={n.actor === null} initials={n.actor === null ? undefined : initials(n.actor)} />
                     <span className="step-body">
                       <span className="notif-text">

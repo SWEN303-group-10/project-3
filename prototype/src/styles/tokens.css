@@ -117,6 +117,7 @@
   --fs-body: 15px;
   --fs-label: 13px;
   --fs-micro: 12px;
+  --fs-badge: 11px;
   --lh-tight: 1.15;
   --lh-snug: 1.3;
   --lh-body: 1.45;
@@ -134,6 +135,11 @@
   --sheet-max: 560px;
   --wide-max: 1040px;
   --side-width: 340px;
+  --panel-min: 300px;
+  --measure: 72ch;
+  --notif-width: 400px;
+  --notif-max: 440px;
+  --badge-size: 16px;
   --course-min: 320px;
   --owner-col: 140px;
   --status-col: 84px;
