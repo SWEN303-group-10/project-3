@@ -26,6 +26,14 @@
   - [Changelog](./wireframes/iteration-3/CHANGES.md)
   - Changes:
     ![Iteration 3 changes](./wireframes/iteration-3/changes.png)
+- Iteration 4
+  - [Changelog](./wireframes/iteration-4/CHANGES.md)
+  - Changes:
+    ![Iteration 4 changes](./wireframes/iteration-4/changes.png)
+- Iteration 5
+  - [Changelog](./wireframes/iteration-5/CHANGES.md)
+  - Changes:
+    ![Iteration 5 changes](./wireframes/iteration-5/changes.png)
 - [Final prototype](./final-prototype.html)
   - [Changelog](./wireframes/final/CHANGES.md)
   - Changes:
