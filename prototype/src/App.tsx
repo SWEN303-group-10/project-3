@@ -6,6 +6,7 @@ import { Group } from './screens/Group'
 import { Submit, Submitted } from './screens/Submit'
 import { EmailMember, EmailSent } from './screens/Email'
 import { AskHelp, HelpSent, TaskPage } from './screens/Task'
+import { Brief } from './screens/Brief'
 
 export default function App() {
   const [messages, setMessages] = useState<ChatMessage[]>(initialMessages)
@@ -26,7 +27,7 @@ export default function App() {
   }
   if (path === '/group/submit') return <Submit />
   if (path === '/group/submitted') return <Submitted />
-
+  if (path === '/group/brief') return <Brief />
   if ((m = path.match(/^\/group\/email\/(\d+)(\/sent)?$/))) {
     const who = member(Number(m[1]))
     if (who) return m[2] ? <EmailSent member={who} /> : <EmailMember member={who} />

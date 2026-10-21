@@ -28,4 +28,5 @@ export const paths = {
   task: (id: string) => `/group/task/${id}`,
   askHelp: (id: string) => `/group/task/${id}/help`,
   helpSent: (id: string) => `/group/task/${id}/help/sent`,
+  brief: '/group/brief',
 }

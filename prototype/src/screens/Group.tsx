@@ -92,13 +92,13 @@ export function Group({ tasks, assign, unassign, messages, sendMessage }: GroupP
                     <Icon name={r.logo} className="logo" />
                   </span>
                   <span className="step-body">
-                    {/* Placeholder links: the real ones come from the course. */}
-                    <a className="stretch step-title" href="#">
+                    {/* Resources with a `to` open a page in the prototype; the rest are placeholders. */}
+                    <a className="stretch step-title" href={r.to ? href(r.to) : '#'}>
                       {r.name}
                     </a>
                     <span className="step-sub">{r.detail}</span>
                   </span>
-                  <Icon name="external" className="icon external" />
+                  <Icon name={r.to ? 'chevron' : 'external'} className={r.to ? 'icon chevron' : 'icon external'} />
                 </li>
               ))}
             </ul>

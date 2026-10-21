@@ -52,10 +52,11 @@ export const members: Member[] = [
   { id: 5, name: 'Member 5', email: 'member5@myvuw.ac.nz', activity: { figure: 'Today', label: 'last active' } },
 ]
 
-export const resources = [
+export const resources: { logo: string; name: string; detail: string; to?: string }[] = [
   { logo: 'logo-gitlab', name: 'GitLab repo', detail: 'engr101/group-7' },
   { logo: 'logo-drive', name: 'Google Drive', detail: 'Group 7 shared folder' },
   { logo: 'logo-discord', name: 'Group chat', detail: 'Discord' },
+  { logo: 'logo-pdf', name: 'Assignment brief', detail: 'PDF · ENGR101', to: "/group/brief" },
 ]
 
 export const lanes: Lane[] = ['To do', 'In progress', 'Done']
