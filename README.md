@@ -26,7 +26,7 @@
   - [Changelog](./wireframes/iteration-3/CHANGES.md)
   - Changes:
     ![Iteration 3 changes](./wireframes/iteration-3/changes.png)
-- [Final prototype](./wireframes/final/prototype/index.html)
+- [Final prototype](./final-prototype.html)
   - [Changelog](./wireframes/final/CHANGES.md)
   - Changes:
     ![Final changes](./wireframes/final/images/changes.png)
