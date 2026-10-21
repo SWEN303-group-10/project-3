@@ -1,5 +1,7 @@
 # SWEN303 Project 3
 
+[Live site](https://swen303-group-10.github.io/project-3/)
+
 ## Iteration history
 
 - [Iteration 1 wireframes](./wireframes/iteration-1/index.html)
@@ -19,3 +21,7 @@
   - [Changelog](./wireframes/iteration-3/CHANGES.md)
   - Changes:
     ![Iteration 3 changes](./wireframes/iteration-3/changes.png)
+- [Final prototype](./wireframes/final/prototype/index.html)
+  - [Changelog](./wireframes/final/CHANGES.md)
+  - Changes:
+    ![Final changes](./wireframes/final/images/changes.png)
