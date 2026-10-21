@@ -113,3 +113,64 @@ export function ownerName(owner: Owner) {
 export function initials(owner: Owner) {
   return owner === 'you' ? you.initials : `M${owner}`
 }
+
+
+// Add to data.ts. Also add this import at the top of the file:
+//   import { paths } from './router'
+
+export interface Notification {
+  id: string
+  group: string // which group it came from, shown on every notification
+  actor: Owner | null // null = system message (no person)
+  text: string
+  when: string
+  unread: boolean
+  to?: string // where it opens, if anywhere
+}
+
+export const initialNotifications: Notification[] = [
+  {
+    id: 'n1',
+    group: 'ENGR101 Group 7',
+    actor: 1,
+    text: 'opened a pull request on GitHub: “Add login form validation”',
+    when: '12 min ago',
+    unread: true,
+    to: "/group",
+  },
+  {
+    id: 'n2',
+    group: 'ENGR101 Group 7',
+    actor: 1,
+    text: 'moved Task E from In progress to Done',
+    when: '1 hour ago',
+    unread: true,
+    to: "/group/task/e",
+  },
+  {
+    id: 'n3',
+    group: 'ENGR101 Group 7',
+    actor: null,
+    text: 'Submission is due today at 11:59 pm. 1 of 3 items is ready.',
+    when: '3 hours ago',
+    unread: true,
+    to: "/group/submit",
+  },
+  {
+    id: 'n4',
+    group: 'ENGR101 Group 7',
+    actor: 2,
+    text: 'left a note on Task D',
+    when: 'Yesterday',
+    unread: false,
+    to: "/group/task/d",
+  },
+  {
+    id: 'n5',
+    group: 'SWEN225 Team 4',
+    actor: 2,
+    text: 'requested your review on a pull request on GitHub',
+    when: '2 days ago',
+    unread: false,
+  },
+]

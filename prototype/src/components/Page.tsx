@@ -1,6 +1,7 @@
 import { useEffect, useRef, type ReactNode } from 'react'
 import { href, paths } from '../router'
 import { you } from '../data'
+import { NotificationBell } from './Notifications'
 
 export interface Crumb {
   label: string
@@ -40,9 +41,12 @@ export function Page({ title, crumbs, width = 'full', children }: PageProps) {
             ))}
           </ol>
         </nav>
-        <span className="avatar" role="img" aria-label="Your profile">
-          {you.initials}
-        </span>
+        <div className="bar-end">
+          <NotificationBell />
+          <span className="avatar" role="img" aria-label="Your profile">
+            {you.initials}
+          </span>
+        </div>
       </header>
       <main className={widthClass[width]} ref={main} tabIndex={-1}>
         {children}
